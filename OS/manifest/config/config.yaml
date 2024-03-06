@@ -33,7 +33,7 @@ database:
     Path: "resource/log/sql"
 
   default:
-    link: "mysql:root:1234qwer@tcp(127.0.0.1:3306)/Committee"
+    link: "mysql:root:1234qwer@tcp(127.0.0.1:3306)/fastcc"
     # link: "mysql:root:admin8548!@tcp(127.0.0.1:3306)/callcenter"
     debug: true
     charset: "utf8mb4" #数据库编码

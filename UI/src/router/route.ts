@@ -38,7 +38,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 				meta: {
 					title: 'message.router.home',
 					isLink: '',
-					isHide: false,
+					isHide: true,
 					isKeepAlive: true,
 					isAffix: true,
 					isIframe: false,
