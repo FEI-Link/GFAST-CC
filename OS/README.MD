@@ -2,6 +2,8 @@
 * 基于全新Go Frame 2.3+Vue3+Element Plus开发的全栈前后端分离的管理系统
 * 前端采用vue-next-admin 、Vue、Element UI。
 
+后端运行：go run main.go
+
 其中gfToken配置
 ```yaml
 gfToken:
