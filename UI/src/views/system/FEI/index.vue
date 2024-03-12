@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
 	<div class="system-dic-container">
 		<el-card shadow="hover">
 			<div class="system-user-search mb15">
@@ -150,4 +150,4 @@ export default defineComponent({
 		};
 	},
 });
-</script>
+</script> -->
