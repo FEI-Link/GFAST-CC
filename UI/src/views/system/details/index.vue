@@ -25,7 +25,7 @@
 							</el-icon>
 							查询
 						</el-button>
-						<el-button size="default" type="primary" class="ml10" @click="getList">
+						<el-button size="default" type="primary" class="ml10" @click="addlist">
 							<el-icon>
 								<ele-Search />
 							</el-icon>
@@ -37,10 +37,10 @@
 			<el-table :data="state.data"  show-summary style="width: 100%">
 				<el-table-column prop="xh" label="序号" width="60" align="center" />
 				<el-table-column prop="xm" label="姓名" align="center"></el-table-column>
-				<el-table-column prop="hflv" label="职位信息" show-overflow-tooltip align="center"></el-table-column>
-				<el-table-column prop="hflv" label="所属部门" show-overflow-tooltip align="center"></el-table-column>
-				<el-table-column prop="hflv" label="入职时间" show-overflow-tooltip align="center"></el-table-column>
-				<el-table-column prop="jdzl" label="在职状态" show-overflow-tooltip align="center"></el-table-column>
+				<el-table-column prop="zwxx" label="职位信息" show-overflow-tooltip align="center"></el-table-column>
+				<el-table-column prop="ssbm" label="所属部门" show-overflow-tooltip align="center"></el-table-column>
+				<el-table-column prop="rzsj" label="入职时间" show-overflow-tooltip align="center"></el-table-column>
+				<el-table-column prop="zzzt" label="在职状态" show-overflow-tooltip align="center"></el-table-column>
 			</el-table>
 		</el-card>
 	</div>
@@ -82,7 +82,11 @@ const getList = () => {
 		state.data = res.data.list ?? [];
 	})
 };
-
+const addlist = () => {
+	adddetails(state.param).then(res => {
+		state.data = res.data.list ?? [];
+	})
+};
 // 页面加载时
 onMounted(() => {
 	getList();
