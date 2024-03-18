@@ -12,33 +12,33 @@ import (
 	"github.com/tiger1103/gfast/v3/internal/app/system/service"
 )
 
-var Details = DetailsController{}
+var Details = detailsController{}
 
-type DetailsController struct {
+type detailsController struct {
 	BaseController
 }
 
 // Init 自动执行的初始化方法
-func (c *DetailsController) List(ctx context.Context, req *system.DeptSearchReq) (res *system.DeptSearchRes, err error) {
-	res = new(system.DeptSearchRes)
-	res.DeptList, err = service.SysDept().GetList(ctx, req)
+func (c *detailsController) List(ctx context.Context, req *system.DetailsSearchReq) (res *system.DetailsSearchRes, err error) {
+	res = new(system.DetailsSearchRes)
+	res.DeptList, err = service.de().GetList(ctx, req)
 	return
 }
 
 // Add 添加部门
-func (c *DetailsController) Add(ctx context.Context, req *system.DeptAddReq) (res *system.DeptAddRes, err error) {
+func (c *detailsController) Add(ctx context.Context, req *system.DeptAddReq) (res *system.DeptAddRes, err error) {
 	err = service.SysDept().Add(ctx, req)
 	return
 }
 
 // Edit 修改部门
-func (c *DetailsController) Edit(ctx context.Context, req *system.DeptEditReq) (res *system.DeptEditRes, err error) {
+func (c *detailsController) Edit(ctx context.Context, req *system.DeptEditReq) (res *system.DeptEditRes, err error) {
 	err = service.SysDept().Edit(ctx, req)
 	return
 }
 
 // Delete 删除部门
-func (c *DetailsController) Delete(ctx context.Context, req *system.DeptDeleteReq) (res *system.DeptDeleteRes, err error) {
+func (c *detailsController) Delete(ctx context.Context, req *system.DeptDeleteReq) (res *system.DeptDeleteRes, err error) {
 	err = service.SysDept().Delete(ctx, req.Id)
 	return
 }

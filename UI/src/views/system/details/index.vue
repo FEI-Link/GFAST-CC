@@ -3,16 +3,10 @@
 		<el-card shadow="hover">
 			<div class="system-user-search mb15">
 				<el-form :inline="true" :model="state.param" :rules="state.rules">
-					<el-form-item label="关键字" prop="keyWords">
-                <el-input
-                    v-model="state.param.keyWords"
-                    placeholder="请输入用户账号或姓名"
-                    clearable
-                    size="default"
-                    style="width: 240px"
-                    @keyup.enter.native=""
-                />
-              </el-form-item>
+					<el-form-item label="关键字">
+						<el-input size="default" v-model="state.param.keyWords" placeholder="请输入工单描述"
+							class="w-50 m-2" clearable />
+					</el-form-item>
 					<!-- <el-form-item label="编号查询" prop="dateRange">
 						<el-date-picker v-model="state.param.dateRange" size="default" style="width: 240px"
 							value-format="YYYY-MM-DD" type="daterange" range-separator="-" start-placeholder="开始日期"
@@ -25,12 +19,12 @@
 							</el-icon>
 							查询
 						</el-button>
-						<el-button size="default" type="primary" class="ml10" @click="addlist">
+						<!-- <el-button size="default" type="primary" class="ml10" @click="addlist">
 							<el-icon>
 								<ele-Search />
 							</el-icon>
 							新增
-						</el-button>
+						</el-button> -->
 					</el-form-item>
 				</el-form>
 			</div>
@@ -62,7 +56,7 @@ interface DataState {
 	loading: boolean;
 	rules: object;
 	param: {
-		keyWords:string;
+		keyWords:string[];
 	};
 }
 
@@ -70,7 +64,7 @@ const state = reactive<DataState>({
 	data: [],
 	loading: false,
 	param:{
-		keyWords:'',
+		keyWords:[]
 	},
 	rules: {
 	},
