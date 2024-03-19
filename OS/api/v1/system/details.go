@@ -18,7 +18,7 @@ type DetailsSearchReq struct {
 type DetailsSearchRes struct {
 	g.Meta `mime:"application/json"`
 	commonApi.ListRes
-	List []*entity.SysDetails `json:"list"`
+	DetailsList []*entity.SysDetails `json:"list"`
 }
 
 // // DemoGenClassAddReq 添加操作请求参数
