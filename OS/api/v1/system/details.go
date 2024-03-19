@@ -8,8 +8,8 @@ import (
 
 // 这里就是搜索界面请求的路径
 type DetailsSearchReq struct {
-	g.Meta  `path:"/details/list" tags:"分类信息" method:"get" summary:"职务信息"`
-	Keyword string `p:"className"` //分类名
+	g.Meta   `path:"/details/list" tags:"分类信息" method:"get" summary:"职务信息"`
+	UserName string `json:"userName"   description:"用户名"`
 	commonApi.PageReq
 	commonApi.Author
 }
@@ -17,7 +17,7 @@ type DetailsSearchReq struct {
 // DemoGenClassSearchRes 列表返回结果
 type DetailsSearchRes struct {
 	g.Meta `mime:"application/json"`
-	commonApi.ListRes
+	// commonApi.ListRes
 	DetailsList []*entity.SysDetails `json:"list"`
 }
 

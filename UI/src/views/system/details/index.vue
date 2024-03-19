@@ -56,7 +56,7 @@ interface DataState {
 	loading: boolean;
 	rules: object;
 	param: {
-		keyWords:string[];
+		keyWords:string;
 	};
 }
 
@@ -64,7 +64,7 @@ const state = reactive<DataState>({
 	data: [],
 	loading: false,
 	param:{
-		keyWords:[]
+		keyWords:''
 	},
 	rules: {
 	},
