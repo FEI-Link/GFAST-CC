@@ -86,3 +86,4 @@ onMounted(() => {
 	getList();
 });
 </script>
+../../../api/demo/details
