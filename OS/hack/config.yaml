@@ -3,8 +3,8 @@ gfcli:
   gen:
     dao:
       - link:            "mysql:root:1234qwer@tcp(127.0.0.1:3306)/fastcc"
-        tables:          "sys_details,sys_jiangcheng,sys_mission,sys_study,sys_userex"
+        tables:          "sys_details,sys_jiangcheng,sys_mission,sys_study,sys_userex,cc_room,cc_room_phone,sys_state"
         removePrefix:    "gf_"
         descriptionTag:  true
         noModelComment:  true
-        path: "./internal/app/system"
+        path: "./internal/app/demo"
