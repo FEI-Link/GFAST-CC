@@ -19,5 +19,11 @@ type IDetails interface {
 var localIDetails IDetails
 
 func SysDetails() IDetails {
+	if localIDetails == nil {
+		panic("implement not found for interface ISysDept, forgot register?")
+	}
 	return localIDetails
+}
+func RegisterSysDetails(i IDetails) {
+	localIDetails = i
 }

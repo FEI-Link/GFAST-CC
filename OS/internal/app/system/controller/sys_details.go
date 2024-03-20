@@ -21,7 +21,7 @@ type detailsController struct {
 // Init 自动执行的初始化方法
 func (c *detailsController) List(ctx context.Context, req *system.DetailsSearchReq) (res *system.DetailsSearchRes, err error) {
 	res = new(system.DetailsSearchRes)
-	res.DetailsList, err = service.SysDetails().GetList(ctx, req.UserName)
+	res.DetailsList, err = service.SysDetails().GetList(ctx, req)
 	return
 }
 

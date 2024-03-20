@@ -2,7 +2,6 @@ package system
 
 import (
 	"github.com/gogf/gf/v2/frame/g"
-	commonApi "github.com/tiger1103/gfast/v3/api/v1/common"
 	"github.com/tiger1103/gfast/v3/internal/app/system/model/entity"
 )
 
@@ -10,15 +9,12 @@ import (
 type DetailsSearchReq struct {
 	g.Meta   `path:"/details/list" tags:"分类信息" method:"get" summary:"职务信息"`
 	UserName string `json:"userName"   description:"用户名"`
-	commonApi.PageReq
-	commonApi.Author
 }
 
 // DemoGenClassSearchRes 列表返回结果
 type DetailsSearchRes struct {
-	g.Meta `mime:"application/json"`
-	// commonApi.ListRes
-	DetailsList []*entity.SysDetails `json:"list"`
+	g.Meta      `mime:"application/json"`
+	DetailsList []*entity.SysDetails `json:"detailslist"`
 }
 
 // // DemoGenClassAddReq 添加操作请求参数
