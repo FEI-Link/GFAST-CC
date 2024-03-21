@@ -49,7 +49,7 @@ export default {
 <script lang="ts" setup>
 import { ElMessage } from 'element-plus';
 import { onMounted, reactive } from 'vue';
-import { getdetails, adddetails,editdetails,deletedetails } from '/@/api/system/details';
+import { getdetails, adddetails,editdetails,deletedetails } from '/@/api/demo/details';
 
 interface DataState {
 	data: Array<any>;
