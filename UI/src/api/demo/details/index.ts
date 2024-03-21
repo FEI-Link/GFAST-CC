@@ -10,7 +10,7 @@ export function getdetails(query?:Object) {
 
 export function adddetails(data:object) {
     return request({
-        url: '/api/v1/system/details/add',
+        url: '/api/v1/demo/details/add',
         method: 'post',
         data:data
     })
@@ -19,7 +19,7 @@ export function adddetails(data:object) {
 
 export function editdetails(data:object) {
     return request({
-        url: '/api/v1/system/details/edit',
+        url: '/api/v1/demo/details/edit',
         method: 'put',
         data:data
     })
@@ -28,7 +28,7 @@ export function editdetails(data:object) {
 
 export function deletedetails(id:number) {
     return request({
-        url: '/api/v1/system/details/delete',
+        url: '/api/v1/demo/details/delete',
         method: 'delete',
         data:{id}
     })
