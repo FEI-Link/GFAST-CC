@@ -28,19 +28,19 @@ func (c *demoGenController) Get(ctx context.Context, req *demo.DemoGenGetReq) (r
 }
 
 // Add 添加代码生成测试
-func (c *demoGenController) Add(ctx context.Context, req *demo.DemoGenAddReq) (res *demo.DemoGenAddRes, err error) {
-	err = service.DemoGen().Add(ctx, req)
-	return
-}
+// func (c *demoGenController) Add(ctx context.Context, req *demo.DemoGenAddReq) (res *demo.DemoGenAddRes, err error) {
+// 	err = service.DemoGen().Add(ctx, req)
+// 	return
+// }
 
-// Edit 修改代码生成测试
-func (c *demoGenController) Edit(ctx context.Context, req *demo.DemoGenEditReq) (res *demo.DemoGenEditRes, err error) {
-	err = service.DemoGen().Edit(ctx, req)
-	return
-}
+// // Edit 修改代码生成测试
+// func (c *demoGenController) Edit(ctx context.Context, req *demo.DemoGenEditReq) (res *demo.DemoGenEditRes, err error) {
+// 	err = service.DemoGen().Edit(ctx, req)
+// 	return
+// }
 
 // Delete 删除代码生成测试
-func (c *demoGenController) Delete(ctx context.Context, req *demo.DemoGenDeleteReq) (res *demo.DemoGenDeleteRes, err error) {
-	err = service.DemoGen().Delete(ctx, req.Ids)
-	return
-}
+// func (c *demoGenController) Delete(ctx context.Context, req *demo.DemoGenDeleteReq) (res *demo.DemoGenDeleteRes, err error) {
+// 	err = service.DemoGen().Delete(ctx, req.Ids)
+// 	return
+// }

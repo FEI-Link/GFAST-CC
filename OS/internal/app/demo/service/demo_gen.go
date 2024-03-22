@@ -12,13 +12,10 @@ import (
 	"github.com/tiger1103/gfast/v3/internal/app/demo/model"
 )
 
-
 type (
 	IDemoGen interface {
 		List(ctx context.Context, req *demo.DemoGenSearchReq) (listRes *demo.DemoGenSearchRes, err error)
 		GetById(ctx context.Context, id uint) (res *model.DemoGenInfoRes, err error)
-		Add(ctx context.Context, req *demo.DemoGenAddReq) (err error)
-		Edit(ctx context.Context, req *demo.DemoGenEditReq) (err error)
 		Delete(ctx context.Context, ids []uint) (err error)
 	}
 )
