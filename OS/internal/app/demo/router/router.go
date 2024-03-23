@@ -3,9 +3,10 @@ package router
 import (
 	"context"
 
+	"gocc/internal/app/system/service"
+	"gocc/library/libRouter"
+
 	"github.com/gogf/gf/v2/net/ghttp"
-	"github.com/tiger1103/gfast/v3/internal/app/system/service"
-	"github.com/tiger1103/gfast/v3/library/libRouter"
 )
 
 var R = new(Router)

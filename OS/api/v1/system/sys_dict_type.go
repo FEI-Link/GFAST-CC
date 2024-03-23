@@ -6,10 +6,11 @@
 package system
 
 import (
+	commonApi "gocc/api/v1/common"
+	commonModel "gocc/internal/app/common/model"
+	commonEntity "gocc/internal/app/common/model/entity"
+
 	"github.com/gogf/gf/v2/frame/g"
-	commonApi "github.com/tiger1103/gfast/v3/api/v1/common"
-	commonModel "github.com/tiger1103/gfast/v3/internal/app/common/model"
-	commonEntity "github.com/tiger1103/gfast/v3/internal/app/common/model/entity"
 )
 
 type DictTypeSearchReq struct {

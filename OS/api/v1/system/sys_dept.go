@@ -6,9 +6,10 @@
 package system
 
 import (
+	"gocc/internal/app/system/model"
+	"gocc/internal/app/system/model/entity"
+
 	"github.com/gogf/gf/v2/frame/g"
-	"github.com/tiger1103/gfast/v3/internal/app/system/model"
-	"github.com/tiger1103/gfast/v3/internal/app/system/model/entity"
 )
 
 type DeptSearchReq struct {

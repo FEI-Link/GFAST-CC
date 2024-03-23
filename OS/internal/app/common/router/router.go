@@ -8,8 +8,9 @@ package router
 import (
 	"context"
 
+	"gocc/internal/app/common/controller"
+
 	"github.com/gogf/gf/v2/net/ghttp"
-	"github.com/tiger1103/gfast/v3/internal/app/common/controller"
 )
 
 var R = new(Router)

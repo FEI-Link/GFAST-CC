@@ -6,9 +6,10 @@
 package system
 
 import (
+	commonApi "gocc/api/v1/common"
+	"gocc/internal/app/system/model"
+
 	"github.com/gogf/gf/v2/frame/g"
-	commonApi "github.com/tiger1103/gfast/v3/api/v1/common"
-	"github.com/tiger1103/gfast/v3/internal/app/system/model"
 )
 
 // SysOperLogSearchReq 分页请求参数

@@ -4,7 +4,7 @@
 
 package common
 
-import "github.com/tiger1103/gfast/v3/internal/app/common/model"
+import "gocc/internal/app/common/model"
 
 // PageReq 公共请求参数
 type PageReq struct {

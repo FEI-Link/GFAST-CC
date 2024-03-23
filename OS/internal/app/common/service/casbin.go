@@ -2,13 +2,14 @@ package service
 
 import (
 	"context"
+	"gocc/internal/app/common/dao"
+	"gocc/internal/app/common/model/entity"
+	"sync"
+
 	"github.com/casbin/casbin/v2"
 	"github.com/casbin/casbin/v2/model"
 	"github.com/casbin/casbin/v2/persist"
 	"github.com/gogf/gf/v2/frame/g"
-	"github.com/tiger1103/gfast/v3/internal/app/common/dao"
-	"github.com/tiger1103/gfast/v3/internal/app/common/model/entity"
-	"sync"
 )
 
 type adapterCasbin struct {

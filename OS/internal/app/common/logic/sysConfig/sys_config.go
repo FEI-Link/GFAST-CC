@@ -9,17 +9,18 @@ import (
 	"context"
 	"errors"
 
+	"gocc/api/v1/system"
+	"gocc/internal/app/common/consts"
+	"gocc/internal/app/common/dao"
+	"gocc/internal/app/common/model/do"
+	"gocc/internal/app/common/model/entity"
+	"gocc/internal/app/common/service"
+	systemConsts "gocc/internal/app/system/consts"
+	"gocc/library/liberr"
+
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
-	"github.com/tiger1103/gfast/v3/api/v1/system"
-	"github.com/tiger1103/gfast/v3/internal/app/common/consts"
-	"github.com/tiger1103/gfast/v3/internal/app/common/dao"
-	"github.com/tiger1103/gfast/v3/internal/app/common/model/do"
-	"github.com/tiger1103/gfast/v3/internal/app/common/model/entity"
-	"github.com/tiger1103/gfast/v3/internal/app/common/service"
-	systemConsts "github.com/tiger1103/gfast/v3/internal/app/system/consts"
-	"github.com/tiger1103/gfast/v3/library/liberr"
 )
 
 func init() {

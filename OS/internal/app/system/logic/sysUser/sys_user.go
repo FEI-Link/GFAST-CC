@@ -9,6 +9,17 @@ import (
 	"context"
 	"fmt"
 
+	"gocc/api/v1/system"
+	commonService "gocc/internal/app/common/service"
+	"gocc/internal/app/system/consts"
+	"gocc/internal/app/system/dao"
+	"gocc/internal/app/system/model"
+	"gocc/internal/app/system/model/do"
+	"gocc/internal/app/system/model/entity"
+	"gocc/internal/app/system/service"
+	"gocc/library/libUtils"
+	"gocc/library/liberr"
+
 	"github.com/gogf/gf/v2/container/gset"
 	"github.com/gogf/gf/v2/database/gdb"
 	"github.com/gogf/gf/v2/errors/gerror"
@@ -18,16 +29,6 @@ import (
 	"github.com/gogf/gf/v2/util/gconv"
 	"github.com/gogf/gf/v2/util/grand"
 	"github.com/mssola/user_agent"
-	"github.com/tiger1103/gfast/v3/api/v1/system"
-	commonService "github.com/tiger1103/gfast/v3/internal/app/common/service"
-	"github.com/tiger1103/gfast/v3/internal/app/system/consts"
-	"github.com/tiger1103/gfast/v3/internal/app/system/dao"
-	"github.com/tiger1103/gfast/v3/internal/app/system/model"
-	"github.com/tiger1103/gfast/v3/internal/app/system/model/do"
-	"github.com/tiger1103/gfast/v3/internal/app/system/model/entity"
-	"github.com/tiger1103/gfast/v3/internal/app/system/service"
-	"github.com/tiger1103/gfast/v3/library/libUtils"
-	"github.com/tiger1103/gfast/v3/library/liberr"
 )
 
 func init() {

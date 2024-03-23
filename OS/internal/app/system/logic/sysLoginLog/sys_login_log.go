@@ -7,15 +7,16 @@ package sysLoginLog
 import (
 	"context"
 
+	"gocc/api/v1/system"
+	"gocc/internal/app/system/consts"
+	"gocc/internal/app/system/dao"
+	"gocc/internal/app/system/model"
+	"gocc/internal/app/system/service"
+	"gocc/library/liberr"
+
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/grpool"
 	"github.com/gogf/gf/v2/util/gconv"
-	"github.com/tiger1103/gfast/v3/api/v1/system"
-	"github.com/tiger1103/gfast/v3/internal/app/system/consts"
-	"github.com/tiger1103/gfast/v3/internal/app/system/dao"
-	"github.com/tiger1103/gfast/v3/internal/app/system/model"
-	"github.com/tiger1103/gfast/v3/internal/app/system/service"
-	"github.com/tiger1103/gfast/v3/library/liberr"
 )
 
 func init() {

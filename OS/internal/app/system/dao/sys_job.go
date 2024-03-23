@@ -6,7 +6,7 @@
 package dao
 
 import (
-	"github.com/tiger1103/gfast/v3/internal/app/system/dao/internal"
+	"gocc/internal/app/system/dao/internal"
 )
 
 // sysJobDao is the manager for logic model data accessing and custom defined data operations functions management.

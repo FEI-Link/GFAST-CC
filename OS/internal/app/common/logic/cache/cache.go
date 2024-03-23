@@ -6,11 +6,12 @@
 package cache
 
 import (
+	"gocc/internal/app/common/consts"
+	"gocc/internal/app/common/service"
+
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gctx"
 	"github.com/tiger1103/gfast-cache/cache"
-	"github.com/tiger1103/gfast/v3/internal/app/common/consts"
-	"github.com/tiger1103/gfast/v3/internal/app/common/service"
 )
 
 func init() {

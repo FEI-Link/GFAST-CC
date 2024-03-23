@@ -7,8 +7,8 @@ package controller
 import (
 	"context"
 
-	"github.com/tiger1103/gfast/v3/api/v1/common"
-	"github.com/tiger1103/gfast/v3/internal/app/common/service"
+	"gocc/api/v1/common"
+	"gocc/internal/app/common/service"
 )
 
 var Captcha = captchaController{}

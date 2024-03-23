@@ -5,7 +5,7 @@
 package dao
 
 import (
-	"github.com/tiger1103/gfast/v3/internal/app/demo/dao/internal"
+	"gocc/internal/app/demo/dao/internal"
 )
 
 // internalDemoGenDao is internal type for wrapping internal DAO implements.

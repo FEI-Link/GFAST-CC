@@ -9,12 +9,13 @@ package router
 import (
 	"context"
 
+	commonRouter "gocc/internal/app/common/router"
+	commonService "gocc/internal/app/common/service"
+	demoRouter "gocc/internal/app/demo/router"
+	systemRouter "gocc/internal/app/system/router"
+	"gocc/library/libRouter"
+
 	"github.com/gogf/gf/v2/net/ghttp"
-	commonRouter "github.com/tiger1103/gfast/v3/internal/app/common/router"
-	commonService "github.com/tiger1103/gfast/v3/internal/app/common/service"
-	demoRouter "github.com/tiger1103/gfast/v3/internal/app/demo/router"
-	systemRouter "github.com/tiger1103/gfast/v3/internal/app/system/router"
-	"github.com/tiger1103/gfast/v3/library/libRouter"
 )
 
 var R = new(Router)

@@ -5,8 +5,9 @@
 package model
 
 import (
+	"gocc/internal/app/system/model/entity"
+
 	"github.com/gogf/gf/v2/util/gmeta"
-	"github.com/tiger1103/gfast/v3/internal/app/system/model/entity"
 )
 
 // LoginUserRes 登录返回

@@ -7,21 +7,22 @@ package sysOperLog
 import (
 	"context"
 
+	"gocc/api/v1/system"
+	"gocc/internal/app/system/consts"
+	"gocc/internal/app/system/dao"
+	"gocc/internal/app/system/model"
+	"gocc/internal/app/system/model/do"
+	"gocc/internal/app/system/model/entity"
+	"gocc/internal/app/system/service"
+	"gocc/library/libUtils"
+	"gocc/library/liberr"
+
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/os/gctx"
 	"github.com/gogf/gf/v2/os/grpool"
 	"github.com/gogf/gf/v2/os/gtime"
 	"github.com/gogf/gf/v2/text/gstr"
-	"github.com/tiger1103/gfast/v3/api/v1/system"
-	"github.com/tiger1103/gfast/v3/internal/app/system/consts"
-	"github.com/tiger1103/gfast/v3/internal/app/system/dao"
-	"github.com/tiger1103/gfast/v3/internal/app/system/model"
-	"github.com/tiger1103/gfast/v3/internal/app/system/model/do"
-	"github.com/tiger1103/gfast/v3/internal/app/system/model/entity"
-	"github.com/tiger1103/gfast/v3/internal/app/system/service"
-	"github.com/tiger1103/gfast/v3/library/libUtils"
-	"github.com/tiger1103/gfast/v3/library/liberr"
 )
 
 type sOperateLog struct {

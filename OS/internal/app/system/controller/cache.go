@@ -8,13 +8,14 @@ package controller
 import (
 	"context"
 
+	"gocc/api/v1/system"
+	commonConsts "gocc/internal/app/common/consts"
+	"gocc/internal/app/common/service"
+	"gocc/internal/app/system/consts"
+
 	"github.com/gogf/gf/v2/container/gvar"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
-	"github.com/tiger1103/gfast/v3/api/v1/system"
-	commonConsts "github.com/tiger1103/gfast/v3/internal/app/common/consts"
-	"github.com/tiger1103/gfast/v3/internal/app/common/service"
-	"github.com/tiger1103/gfast/v3/internal/app/system/consts"
 )
 
 var Cache = new(cacheController)

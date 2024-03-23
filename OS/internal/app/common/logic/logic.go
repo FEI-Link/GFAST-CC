@@ -5,11 +5,11 @@
 package logic
 
 import (
-	_ "github.com/tiger1103/gfast/v3/internal/app/common/logic/cache"
-	_ "github.com/tiger1103/gfast/v3/internal/app/common/logic/captcha"
-	_ "github.com/tiger1103/gfast/v3/internal/app/common/logic/eventBus"
-	_ "github.com/tiger1103/gfast/v3/internal/app/common/logic/middleware"
-	_ "github.com/tiger1103/gfast/v3/internal/app/common/logic/sysConfig"
-	_ "github.com/tiger1103/gfast/v3/internal/app/common/logic/sysDictData"
-	_ "github.com/tiger1103/gfast/v3/internal/app/common/logic/sysDictType"
+	_ "gocc/internal/app/common/logic/cache"
+	_ "gocc/internal/app/common/logic/captcha"
+	_ "gocc/internal/app/common/logic/eventBus"
+	_ "gocc/internal/app/common/logic/middleware"
+	_ "gocc/internal/app/common/logic/sysConfig"
+	_ "gocc/internal/app/common/logic/sysDictData"
+	_ "gocc/internal/app/common/logic/sysDictType"
 )

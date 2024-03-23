@@ -13,6 +13,8 @@ import (
 	"path"
 	"strings"
 
+	"gocc/internal/app/common/consts"
+
 	"github.com/gogf/gf/v2/crypto/gmd5"
 	"github.com/gogf/gf/v2/encoding/gcharset"
 	"github.com/gogf/gf/v2/encoding/gjson"
@@ -21,7 +23,6 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/text/gstr"
-	"github.com/tiger1103/gfast/v3/internal/app/common/consts"
 )
 
 // EncryptPassword 密码加密

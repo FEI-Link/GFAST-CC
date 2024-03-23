@@ -8,20 +8,21 @@ package sysUserOnline
 import (
 	"context"
 
+	"gocc/api/v1/common"
+	"gocc/api/v1/system"
+	comModel "gocc/internal/app/common/model"
+	"gocc/internal/app/system/consts"
+	"gocc/internal/app/system/dao"
+	"gocc/internal/app/system/model"
+	"gocc/internal/app/system/model/do"
+	"gocc/internal/app/system/model/entity"
+	"gocc/internal/app/system/service"
+	"gocc/library/liberr"
+
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/grpool"
 	"github.com/gogf/gf/v2/os/gtime"
 	"github.com/mssola/user_agent"
-	"github.com/tiger1103/gfast/v3/api/v1/common"
-	"github.com/tiger1103/gfast/v3/api/v1/system"
-	comModel "github.com/tiger1103/gfast/v3/internal/app/common/model"
-	"github.com/tiger1103/gfast/v3/internal/app/system/consts"
-	"github.com/tiger1103/gfast/v3/internal/app/system/dao"
-	"github.com/tiger1103/gfast/v3/internal/app/system/model"
-	"github.com/tiger1103/gfast/v3/internal/app/system/model/do"
-	"github.com/tiger1103/gfast/v3/internal/app/system/model/entity"
-	"github.com/tiger1103/gfast/v3/internal/app/system/service"
-	"github.com/tiger1103/gfast/v3/library/liberr"
 )
 
 func init() {
