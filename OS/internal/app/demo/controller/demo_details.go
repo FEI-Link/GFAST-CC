@@ -2,7 +2,7 @@ package controller
 
 import (
 	"context"
-
+	"gocc/api/v1/demo"
 	"gocc/internal/app/demo/service"
 )
 
@@ -12,9 +12,9 @@ type demoDetailsController struct {
 	BaseController
 }
 
-func (c *demoDetailsController) DetailsRequest(ctx context.Context, req *kefu.BxhzReport01Req) (
-	res *kefu.BxhzReport01Res, err error) {
-	res = new(kefu.BxhzReport01Res)
-	res.List1, res.List2, err = service.BxhzReport().BxhzReport01(ctx, req.DateRange)
+func (c *demoDetailsController) DetailsRequest(ctx context.Context, req *demo.DetailsReq) (
+	res *demo.DetailsRes, err error) {
+	res = new(demo.DetailsRes)
+	res.List, err = service.DemoDetails().DemoDetails(ctx, req.Fgs)
 	return
 }

@@ -3,6 +3,7 @@ package router
 import (
 	"context"
 
+	"gocc/internal/app/demo/controller"
 	"gocc/internal/app/system/service"
 	"gocc/library/libRouter"
 
@@ -22,6 +23,9 @@ func (router *Router) BindController(ctx context.Context, group *ghttp.RouterGro
 		//后台操作日志记录
 		group.Hook("/*", ghttp.HookAfterOutput, service.OperateLog().OperationLog)
 		//自动绑定定义的控制器
+		group.Bind(
+			controller.DemoDetails,
+		)
 		if err := libRouter.RouterAutoBind(ctx, router, group); err != nil {
 			panic(err)
 		}
