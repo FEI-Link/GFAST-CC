@@ -1,5 +1,5 @@
 <template>
-	<div class="kefu-daiban-container">
+	<div class="demo-details-container">
 		<el-card shadow="hover">
 			<div class="system-user-search mb15">
 				<el-form :inline="true" :model="state.param" :rules="state.rules">
@@ -43,7 +43,7 @@
 // 用于切换页面时，缓存，跟菜单的缓存配合使用
 // setup语法糖，需要设置一个名称，否则缓存不生效
 export default {
-	name: 'apiV1systemdetails',
+	name: 'apiV1demodetails',
 }
 </script>
 <script lang="ts" setup>
@@ -86,4 +86,3 @@ onMounted(() => {
 	getList();
 });
 </script>
-../../../api/demo/details
