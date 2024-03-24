@@ -3,8 +3,8 @@
 		<el-card shadow="hover">
 			<div class="system-user-search mb15">
 				<el-form :inline="true" :model="state.param" :rules="state.rules">
-					<el-form-item label="关键字">
-						<el-input size="default" v-model="state.param.keyWords" placeholder="请输入工单描述"
+					<el-form-item label="用户ID">
+						<el-input size="default" v-model="state.param.keyWords" placeholder="请输入用户ID"
 							class="w-50 m-2" clearable />
 					</el-form-item>
 					<!-- <el-form-item label="编号查询" prop="dateRange">

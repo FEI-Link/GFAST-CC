@@ -7,7 +7,7 @@ import (
 
 type DetailsReq struct {
 	g.Meta `path:"/details/list" tags:"详情查询" method:"get" summary:"详情查询"`
-	Fgs    string `json:"fgs" dc:"分公司"`
+	UserId int64 `json:"fgs" dc:"分公司"`
 }
 type DetailsRes struct {
 	g.Meta `mime:"application/json"`

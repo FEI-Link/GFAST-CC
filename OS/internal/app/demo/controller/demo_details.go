@@ -15,6 +15,6 @@ type demoDetailsController struct {
 func (c *demoDetailsController) DetailsRequest(ctx context.Context, req *demo.DetailsReq) (
 	res *demo.DetailsRes, err error) {
 	res = new(demo.DetailsRes)
-	res.List, err = service.DemoDetails().DemoDetails(ctx, req.Fgs)
+	res.List, err = service.DemoDetails().DemoDetails(ctx, req.UserId)
 	return
 }
