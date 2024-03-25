@@ -56,7 +56,7 @@ interface DataState {
 	loading: boolean;
 	rules: object;
 	param: {
-		keyWords:string;
+		keyWords:number;
 	};
 }
 
@@ -64,7 +64,7 @@ const state = reactive<DataState>({
 	data: [],
 	loading: false,
 	param:{
-		keyWords:''
+		keyWords:0,
 	},
 	rules: {
 	},
@@ -72,17 +72,19 @@ const state = reactive<DataState>({
 // 
 
 const getList = () => {
-	getdetails(state.param).then(res => {
+	console.log("hello worlxd")
+	console.log(state.param.keyWords)
+	getdetails(state.param.keyWords).then(res => {
 		state.data = res.data.list ?? [];
 	})
 };
-const addlist = () => {
-	adddetails(state.param).then(res => {
-		state.data = res.data.list ?? [];
-	})
-};
+// const addlist = () => {
+// 	adddetails(state.param).then(res => {
+// 		state.data = res.data.list ?? [];
+// 	})
+// };
 // 页面加载时
-onMounted(() => {
-	getList();
-});
+// onMounted(() => {
+// 	getList();
+// });
 </script>
