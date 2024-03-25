@@ -1,6 +1,7 @@
 import request from '/@/utils/request';
 //对任职信息进行操作
 export function getdetails(query?:Object) {
+    console.log("函数触发测试二阶段：",query);
     return request({
         url: '/api/v1/demo/details/list',
         method: 'get',

@@ -56,7 +56,7 @@ interface DataState {
 	loading: boolean;
 	rules: object;
 	param: {
-		keyWords:number;
+		keyWords:String;
 	};
 }
 
@@ -64,7 +64,7 @@ const state = reactive<DataState>({
 	data: [],
 	loading: false,
 	param:{
-		keyWords:0,
+		keyWords:'',
 	},
 	rules: {
 	},
@@ -72,8 +72,7 @@ const state = reactive<DataState>({
 // 
 
 const getList = () => {
-	console.log("hello worlxd")
-	console.log(state.param.keyWords)
+	console.log("函数触发：",state.param.keyWords)
 	getdetails(state.param.keyWords).then(res => {
 		state.data = res.data.list ?? [];
 	})
