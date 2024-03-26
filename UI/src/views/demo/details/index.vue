@@ -4,14 +4,9 @@
 			<div class="system-user-search mb15">
 				<el-form :inline="true" :model="state.param" :rules="state.rules">
 					<el-form-item label="用户ID">
-						<el-input size="default" v-model="state.param.keyWords" placeholder="请输入用户ID"
-							class="w-50 m-2" clearable />
+						<el-input size="default" v-model="state.param.keyWords" placeholder="请输入用户ID" class="w-50 m-2"
+							clearable />
 					</el-form-item>
-					<!-- <el-form-item label="编号查询" prop="dateRange">
-						<el-date-picker v-model="state.param.dateRange" size="default" style="width: 240px"
-							value-format="YYYY-MM-DD" type="daterange" range-separator="-" start-placeholder="开始日期"
-							end-placeholder="结束日期" />
-					</el-form-item> -->
 					<el-form-item>
 						<el-button size="default" type="primary" class="ml10" @click="getList">
 							<el-icon>
@@ -19,16 +14,10 @@
 							</el-icon>
 							查询
 						</el-button>
-						<!-- <el-button size="default" type="primary" class="ml10" @click="addlist">
-							<el-icon>
-								<ele-Search />
-							</el-icon>
-							新增
-						</el-button> -->
 					</el-form-item>
 				</el-form>
 			</div>
-			<el-table :data="state.data"  show-summary style="width: 100%">
+			<el-table :data="state.data" show-summary style="width: 100%">
 				<el-table-column prop="xh" label="序号" width="60" align="center" />
 				<el-table-column prop="xm" label="姓名" align="center"></el-table-column>
 				<el-table-column prop="zwxx" label="职位信息" show-overflow-tooltip align="center"></el-table-column>
@@ -40,8 +29,6 @@
 	</div>
 </template>
 <script lang="ts">
-// 用于切换页面时，缓存，跟菜单的缓存配合使用
-// setup语法糖，需要设置一个名称，否则缓存不生效
 export default {
 	name: 'apiV1demodetails',
 }
@@ -49,22 +36,22 @@ export default {
 <script lang="ts" setup>
 import { ElMessage } from 'element-plus';
 import { onMounted, reactive } from 'vue';
-import { getdetails, adddetails,editdetails,deletedetails } from '/@/api/demo/details';
+import { getdetails, adddetails, editdetails, deletedetails } from '/@/api/demo/details';
 
 interface DataState {
 	data: Array<any>;
 	loading: boolean;
 	rules: object;
 	param: {
-		keyWords:String;
+		keyWords: String;
 	};
 }
 
 const state = reactive<DataState>({
 	data: [],
 	loading: false,
-	param:{
-		keyWords:'',
+	param: {
+		keyWords: '',
 	},
 	rules: {
 	},
@@ -72,18 +59,10 @@ const state = reactive<DataState>({
 // 
 
 const getList = () => {
-	console.log("函数触发：",state.param.keyWords)
+	console.log("函数触发：", state.param.keyWords)
 	getdetails(state.param.keyWords).then(res => {
 		state.data = res.data.list ?? [];
 	})
 };
-// const addlist = () => {
-// 	adddetails(state.param).then(res => {
-// 		state.data = res.data.list ?? [];
-// 	})
-// };
-// 页面加载时
-// onMounted(() => {
-// 	getList();
-// });
+
 </script>
