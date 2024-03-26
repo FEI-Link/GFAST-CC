@@ -13,9 +13,3 @@ type DetailsRes struct {
 	g.Meta `mime:"application/json"`
 	List   gdb.Result `json:"list"`
 }
-
-// func (r *DetailsReq) DetailsReqTest() {
-// 	// 添加测试代码以确认此方法是否被触发。
-// 	fmt.Println("DetailsReq 方法被触发了！")
-// 	fmt.Println("测试前端传输过的数据为:", r.DeptName)
-// }

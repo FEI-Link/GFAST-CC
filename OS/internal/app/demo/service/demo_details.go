@@ -2,7 +2,6 @@ package service
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/gogf/gf/v2/database/gdb"
 	"github.com/gogf/gf/v2/frame/g"
@@ -21,12 +20,11 @@ type IDemoDetails interface {
 }
 
 func (s *DemoDetailsImpl) DemoDetails01(ctx context.Context, UserName string) (rs gdb.Result, err error) {
-	fmt.Println("！！！！！！！测试数据是否传达：", UserName, "库库达呦！！！！！！！！！！！！")
 	rs, err = g.DB().GetAll(ctx, `
 	select 
 	log_id as xh,
 	user_name as xm,
-	position as zuxx,
+	position as zwxx,
 	bumen as ssbm,
 	creattime as rzsj,
 	state as zzzt
