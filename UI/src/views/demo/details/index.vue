@@ -48,9 +48,9 @@ export default {
 </script>
 <script lang="ts" setup>
 import { ElMessage } from 'element-plus';
-import { onMounted, reactive } from 'vue';
+import {toRefs, reactive, onMounted, ref, toRaw } from 'vue';
 import { getdetails, adddetails, editdetails, deletedetails } from '/@/api/demo/details';
-
+import { editDetails } from '@/views/demo/details/component/editDetails.vue';
 interface DataState {
 	data: Array<any>;
 	loading: boolean;
@@ -59,7 +59,27 @@ interface DataState {
 		userName: String;
 	};
 }
-
+interface TableData {
+  id:number;
+  leiXing:number;
+  expireAt:string;
+  createdAt:string;
+  title:string;
+  content:string;
+}
+onMounted(()=>{
+	getList();
+})
+const editRef = ref();
+// const editRef = ref();
+const onAdd = () => {
+	editRef.value.openDialog();
+}
+const onEdit = (row: Object) => {
+  editRef.value.openDialog(toRaw(row));
+};
+const onDelete = (row: TableData) => {
+};
 const state = reactive<DataState>({
 	data: [],
 	loading: false,
@@ -76,10 +96,7 @@ const getList = () => {
 		state.data = res.data.list ?? [];
 	})
 };
-// const editRef = ref();
-// const onAdd = () => {
-// 	editRef.value.openDialog();
-// }
+
 // const onEdit = (row: Object) => {
 // 	editRef.value.openDialog(toRaw(row));
 // };
