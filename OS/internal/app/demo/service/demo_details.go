@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"gocc/api/v1/demo"
 
 	"github.com/gogf/gf/v2/database/gdb"
 	"github.com/gogf/gf/v2/frame/g"
@@ -17,6 +18,7 @@ type DemoDetailsImpl struct {
 }
 type IDemoDetails interface {
 	DemoDetails01(ctx context.Context, UserName string) (rs gdb.Result, err error)
+	DemoDetailsAdd(ctx context.Context, req *demo.DetailsReqAdd) (res *demo.DetailsResAdd, err error)
 }
 
 func (s *DemoDetailsImpl) DemoDetails01(ctx context.Context, UserName string) (rs gdb.Result, err error) {
@@ -29,5 +31,9 @@ func (s *DemoDetailsImpl) DemoDetails01(ctx context.Context, UserName string) (r
 	creattime as rzsj,
 	state as zzzt
 	 from  sys_details where user_id=?`, UserName)
+	return
+}
+func (s *DemoDetailsImpl) DemoDetailsAdd(ctx context.Context, req *demo.DetailsReqAdd) (res *demo.DetailsResAdd, err error) {
+
 	return
 }

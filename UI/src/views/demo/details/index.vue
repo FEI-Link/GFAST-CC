@@ -4,7 +4,7 @@
 			<div class="system-user-search mb15">
 				<el-form :inline="true" :model="state.param" :rules="state.rules">
 					<el-form-item label="用户ID">
-						<el-input size="default" v-model="state.param.userName" placeholder="请输入用户ID" class="w-50 m-2"
+						<el-input size="default" v-model="state.param.userName" placeholder="使用ID来查询" class="w-50 m-2"
 							clearable />
 					</el-form-item>
 					<el-form-item>
@@ -32,13 +32,13 @@
 				<el-table-column prop="zzzt" label="在职状态" show-overflow-tooltip align="center"></el-table-column>
 				<el-table-column label="操作" width="200">
 					<template #default="scope">
-						<!-- <el-button size="small" text type="primary" @click="onOpenAddDept(scope.row)">新增</el-button> -->
 						<el-button size="small" text type="primary" @click="onEdit(scope.row)">修改</el-button>
 						<el-button size="small" text type="primary" @click="onDelete(scope.row)">删除</el-button>
 					</template>
 				</el-table-column>
 			</el-table>
 		</el-card>
+		<EditDetails ref="editRef"/>
 	</div>
 </template>
 <script lang="ts">
@@ -47,10 +47,11 @@ export default {
 }
 </script>
 <script lang="ts" setup>
-import { ElMessage } from 'element-plus';
+import { ElMessage ,ElMessageBox} from 'element-plus';
 import {toRefs, reactive, onMounted, ref, toRaw } from 'vue';
-import { getdetails, adddetails, editdetails, deletedetails } from '/@/api/demo/details';
-import { editDetails } from '@/views/demo/details/component/editDetails.vue';
+import { getdetails, deletedetails } from '/@/api/demo/details';
+import EditDetails from  '/@/views/demo/details/component/editDetails.vue';
+
 interface DataState {
 	data: Array<any>;
 	loading: boolean;
@@ -59,27 +60,31 @@ interface DataState {
 		userName: String;
 	};
 }
-interface TableData {
-  id:number;
-  leiXing:number;
-  expireAt:string;
-  createdAt:string;
-  title:string;
-  content:string;
-}
-onMounted(()=>{
-	getList();
-})
+// interface TableData {
+//   id:number;
+//   leiXing:number;
+//   expireAt:string;
+//   createdAt:string;
+//   title:string;
+//   content:string;
+// }
+// onMounted(()=>{
+// 	getList();
+// })
 const editRef = ref();
-// const editRef = ref();
 const onAdd = () => {
+	console.log("函数触发测试新增")
 	editRef.value.openDialog();
 }
+//删除按钮只在选择出来的一行内有
 const onEdit = (row: Object) => {
+	console.log("函数触发测试修改")
   editRef.value.openDialog(toRaw(row));
 };
-const onDelete = (row: TableData) => {
-};
+const onDelete = () => {
+	console.log("函数删除")
+	editRef.value.openDialog();
+}
 const state = reactive<DataState>({
 	data: [],
 	loading: false,
@@ -96,9 +101,4 @@ const getList = () => {
 		state.data = res.data.list ?? [];
 	})
 };
-
-// const onEdit = (row: Object) => {
-// 	editRef.value.openDialog(toRaw(row));
-// };
-
 </script>

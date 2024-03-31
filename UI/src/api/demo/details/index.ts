@@ -10,6 +10,7 @@ export function getdetails(query?:Object) {
 }
 
 export function adddetails(data:object) {
+    console.log("函数增加测试：",data);
     return request({
         url: '/api/v1/demo/details/add',
         method: 'post',
@@ -19,6 +20,7 @@ export function adddetails(data:object) {
 
 
 export function editdetails(data:object) {
+    console.log("函数修改测试：",data);
     return request({
         url: '/api/v1/demo/details/edit',
         method: 'put',

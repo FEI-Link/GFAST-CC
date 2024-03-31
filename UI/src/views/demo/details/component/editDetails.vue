@@ -1,185 +1,141 @@
 <template>
-	<div class="system-edit-details-container">
-		<el-dialog :title="(ruleForm.deptId!==0?'修改':'添加')+'部门'" v-model="isShowDialog" width="769px">
-			<el-form ref="formRef" :model="ruleForm" :rules="rules" size="default" label-width="90px">
-				<el-row :gutter="35">
-					<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb20">
-						<el-form-item label="上级部门">
-							<el-cascader
-								:options="deptData"
-								:props="{ checkStrictly: true,emitPath: false, value: 'deptId', label: 'deptName' }"
-								placeholder="请选择部门"
-								clearable
-								class="w100"
-								v-model="ruleForm.parentId"
-							>
-								<template #default="{ node, data }">
-									<span>{{ data.deptName }}</span>
-									<span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
-								</template>
-							</el-cascader>
-						</el-form-item>
-					</el-col>
-					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-						<el-form-item label="部门名称" prop="deptName">
-							<el-input v-model="ruleForm.deptName" placeholder="请输入部门名称" clearable></el-input>
-						</el-form-item>
-					</el-col>
-					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-						<el-form-item label="负责人">
-							<el-input v-model="ruleForm.leader" placeholder="请输入负责人" clearable></el-input>
-						</el-form-item>
-					</el-col>
-					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-						<el-form-item label="手机号">
-							<el-input v-model="ruleForm.phone" placeholder="请输入手机号" clearable></el-input>
-						</el-form-item>
-					</el-col>
-					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-						<el-form-item label="邮箱">
-							<el-input v-model="ruleForm.email" placeholder="请输入" clearable></el-input>
-						</el-form-item>
-					</el-col>
-					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-						<el-form-item label="排序">
-							<el-input-number v-model="ruleForm.orderNum" :min="0" :max="999" controls-position="right" placeholder="请输入排序" class="w100" />
-						</el-form-item>
-					</el-col>
-					<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-						<el-form-item label="部门状态">
-							<el-switch v-model="ruleForm.status" :active-value="1" :inactive-value="0" inline-prompt active-text="启" inactive-text="禁"></el-switch>
-						</el-form-item>
-					</el-col>
-				</el-row>
+	<div class="system-edit-post-container">
+		<el-dialog :title="(formData.id !== 0 ? '修改' : '添加') + ''" v-model="isShowDialog" width="400px">
+			<el-form ref="formRef" :model="formData" :rules="rules" size="default" label-width="90px">
+				<el-form-item label="姓名" prop="userName">
+					<el-input v-model="formData.userName" type="textarea" placeholder="请输入名字" />
+				</el-form-item>
+				<el-form-item label="职位信息" prop="position">
+					<el-input v-model="formData.position" type="textarea" placeholder="请输入职位信息" />
+				</el-form-item>
+				<el-form-item label="所属部门" prop="bumen">
+					<el-input v-model="formData.bumen" type="textarea" placeholder="请输入所属部门" />
+				</el-form-item>
+				<el-form-item label="入职时间" prop="ruzhiat">
+					<el-input v-model="formData.ruzhiat" type="textarea" placeholder="请输入入职时间" />
+				</el-form-item>
+				<el-form-item label="在职状态" prop="state">
+					<el-input v-model="formData.state" type="textarea" placeholder="请输入在职状态" />
+				</el-form-item>
 			</el-form>
 			<template #footer>
 				<span class="dialog-footer">
 					<el-button @click="onCancel" size="default">取 消</el-button>
-					<el-button type="primary" @click="onSubmit" size="default">{{ruleForm.deptId!==0?'修 改':'添 加'}}</el-button>
+					<el-button type="primary" @click="onSubmit" size="default" :loading="loading">{{ formData.id !== 0 ?
+			'修改' : '添 加' }}</el-button>
 				</span>
 			</template>
 		</el-dialog>
 	</div>
 </template>
 
-<script lang="ts">
-import {reactive, toRefs, defineComponent, getCurrentInstance,ref,unref} from 'vue';
-import {adddetails,editdetails} from "/@/api/demo/details";
-import {ElMessage} from "element-plus";
+<script setup lang="ts">
+import { reactive, toRefs, ref, unref } from 'vue';
+import { getdetails, adddetails, editdetails, deletedetails } from '/@/api/demo/details';
+import { ElMessage } from "element-plus";
 
-// 定义接口来定义对象的类型
-interface TableDataRow {
-	deptName: string;
-	id: number;
-  parentId:number;
-	children?: TableDataRow[];
+interface FormState {
+	id: number,
+	userName: string,
+	position: string,
+	bumen: string,
+	ruzhiat: string,
+	state:string ,
 }
-interface RuleFormState {
-  deptId:number;
-	parentId: number;
-	deptName: string;
-  orderNum: number;
-  leader: string;
-	phone: string | number;
-	email: string;
-	status: number;
-}
-interface DeptSate {
+interface ZhiShiKuState {
 	isShowDialog: boolean;
-	ruleForm: RuleFormState;
-	deptData: Array<TableDataRow>;
-  rules: object;
+	loading: boolean;
+	formData: FormState;
+	rules: {}
 }
-
-export default defineComponent({
-	name: 'systemEditDept',
-	setup(prop,{emit}) {
-    const {proxy} = getCurrentInstance() as any;
-    const formRef = ref<HTMLElement | null>(null);
-		const state = reactive<DeptSate>({
-			isShowDialog: false,
-			ruleForm: {
-        deptId:0,
-        parentId: 0, // 上级部门
-				deptName: '', // 部门名称
-        orderNum:0,
-        leader: '',
-        phone: '',
-        email: '',
-        status: 1,
-			},
-			deptData: [], // 部门数据
-      rules: {
-        deptName:[
-          {required: true, message: "部门名称不能为空", trigger: "blur"},
-        ]
-      }
-		});
-		// 打开弹窗
-		const openDialog = (row?: RuleFormState|number) => {
-      resetForm()
-      getDeptList().then((res:any)=>{
-        state.deptData =  proxy.handleTree(res.data.deptList??[], "deptId","parentId");
-      });
-      if(row && typeof row === "object"){
-        state.ruleForm = row;
-      }else if(row && typeof row === 'number'){
-        state.ruleForm.parentId = row
-      }
-			state.isShowDialog = true;
-		};
-		// 关闭弹窗
-		const closeDialog = () => {
-			state.isShowDialog = false;
-		};
-		// 取消
-		const onCancel = () => {
-			closeDialog();
-		};
-		// 新增
-		const onSubmit = () => {
-      const formWrap = unref(formRef) as any;
-      if (!formWrap) return;
-      formWrap.validate((valid: boolean) => {
-        if (valid) {
-          if(state.ruleForm.deptId===0){
-            //添加
-            addDept(state.ruleForm).then(()=>{
-              ElMessage.success('角色添加成功');
-              closeDialog(); // 关闭弹窗
-              emit('deptList')
-            });
-          }else{
-            //修改
-            editDept(state.ruleForm).then(()=>{
-              ElMessage.success('角色修改成功');
-              closeDialog(); // 关闭弹窗
-              emit('deptList')
-            });
-          }
-        }
-      });
-		};
-    const resetForm = ()=>{
-      state.ruleForm = {
-        deptId:0,
-        parentId: 0, // 上级部门
-        deptName: '', // 部门名称
-        orderNum:0,
-        leader: '',
-        phone: '',
-        email: '',
-        status: 1,
-      }
-    };
-		return {
-			openDialog,
-			closeDialog,
-			onCancel,
-			onSubmit,
-      formRef,
-			...toRefs(state),
-		};
+const formRef = ref<HTMLElement | null>(null);
+const state = reactive<ZhiShiKuState>({
+	loading: false,
+	isShowDialog: false,
+	formData: {
+		id:0,
+		userName: '',
+		position: '',
+		bumen: '',
+		ruzhiat: '',
+		state: '',
 	},
-});
+	// 表单校验
+	rules: {
+		userName: [
+			{ required: true, message: "不能为空", trigger: "blur" }
+		],
+	}
+})
+
+const resetForm = () => {
+	state.formData = {
+		id:0,
+		userName: '',
+		position: '',
+		bumen: '',
+		ruzhiat: '',
+		state: '',
+	}
+};
+
+const emit = defineEmits<{
+	(e: "dataList"): void;
+}>();
+
+const openDialog = (row: FormState | null) => {
+	resetForm();
+	if (row) {
+		state.formData = row;
+	}
+	state.isShowDialog = true;
+};
+
+// 关闭弹窗
+const closeDialog = () => {
+	state.isShowDialog = false;
+};
+// 取消
+const onCancel = () => {
+	closeDialog();
+};
+
+// 新增
+const onSubmit = () => {
+	const formWrap = unref(formRef) as any;
+	if (!formWrap) return;
+	formWrap.validate((valid: boolean) => {
+		if (valid) {
+			state.loading = true;
+			// 发送到后台
+			if (state.formData.id === 0) {
+				// 发送到后台
+				adddetails(state.formData).then(() => {
+					ElMessage.success('添加成功');
+					closeDialog(); // 关闭弹窗
+					emit('dataList');// 给父窗口发送事件
+				}).finally(() => {
+					state.loading = false;
+				})
+			} else {
+				// 发送到后台
+				editdetails(state.formData).then(() => {
+					ElMessage.success('公修改成功');
+					closeDialog(); // 关闭弹窗
+					emit('dataList');// 给父窗口发送事件
+				}).finally(() => {
+					state.loading = false;
+				})
+			}
+		}
+	});
+};
+
+let { loading, isShowDialog, formData, rules } = toRefs(state);
+
+defineExpose({
+	openDialog,
+})
 </script>
+
+<style></style>

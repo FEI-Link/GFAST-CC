@@ -17,3 +17,7 @@ func (c *demoDetailsController) DemoDetails01(ctx context.Context, req *demo.Det
 	res.List, err = service.DemoDetails().DemoDetails01(ctx, req.UserName)
 	return
 }
+func (c *demoDetailsController) DemoDetailsAdd(ctx context.Context, req *demo.DetailsReqAdd) (res *demo.DetailsResAdd, err error) {
+	err = service.DemoDetails().DemoDetailsAdd(ctx, req)
+	return
+}
