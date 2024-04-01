@@ -18,7 +18,7 @@ type DemoDetailsImpl struct {
 }
 type IDemoDetails interface {
 	DemoDetails01(ctx context.Context, UserName string) (rs gdb.Result, err error)
-	DemoDetailsAdd(ctx context.Context, req *demo.DetailsReqAdd) (res *demo.DetailsResAdd, err error)
+	DemoDetailsAdd(ctx context.Context, req *demo.DetailsAddReq) (err error)
 }
 
 func (s *DemoDetailsImpl) DemoDetails01(ctx context.Context, UserName string) (rs gdb.Result, err error) {
@@ -33,7 +33,7 @@ func (s *DemoDetailsImpl) DemoDetails01(ctx context.Context, UserName string) (r
 	 from  sys_details where user_id=?`, UserName)
 	return
 }
-func (s *DemoDetailsImpl) DemoDetailsAdd(ctx context.Context, req *demo.DetailsReqAdd) (res *demo.DetailsResAdd, err error) {
+func (s *DemoDetailsImpl) DemoDetailsAdd(ctx context.Context, req *demo.DetailsAddReq) (err error) {
 
 	return
 }
