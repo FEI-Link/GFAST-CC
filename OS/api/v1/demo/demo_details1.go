@@ -15,7 +15,7 @@ type DetailsRes struct {
 	List   gdb.Result `json:"list"`
 }
 type DetailsAddReq struct {
-	g.Meta   `path:"/details/add" tags:"详情查询" method:"get" summary:"详情查询"`
+	g.Meta   `path:"/details/add" tags:"新增详情" method:"get" summary:"新增详情"`
 	UserName string      `json:"userName"   description:"用户名"`
 	Position string      `json:"position"   description:"职位信息"`
 	Bumen    string      `json:"bumen"      description:"所属部门"`

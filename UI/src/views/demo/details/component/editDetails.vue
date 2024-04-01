@@ -31,7 +31,7 @@
 
 <script setup lang="ts">
 import { reactive, toRefs, ref, unref } from 'vue';
-import { getdetails, adddetails, editdetails, deletedetails } from '/@/api/demo/details';
+import { adddetails, editdetails, deletedetails } from '/@/api/demo/details';
 import { ElMessage } from "element-plus";
 
 interface FormState {

@@ -38,7 +38,7 @@
 				</el-table-column>
 			</el-table>
 		</el-card>
-		<EditDetails ref="editRef"/>
+		<EditDetails ref="editRef" @getList="getList" />
 	</div>
 </template>
 <script lang="ts">
@@ -60,31 +60,15 @@ interface DataState {
 		userName: String;
 	};
 }
-// interface TableData {
-//   id:number;
-//   leiXing:number;
-//   expireAt:string;
-//   createdAt:string;
-//   title:string;
-//   content:string;
-// }
-// onMounted(()=>{
-// 	getList();
-// })
 const editRef = ref();
 const onAdd = () => {
-	console.log("函数触发测试新增")
+	console.log("打开弹窗")
 	editRef.value.openDialog();
 }
-//删除按钮只在选择出来的一行内有
 const onEdit = (row: Object) => {
 	console.log("函数触发测试修改")
   editRef.value.openDialog(toRaw(row));
 };
-const onDelete = () => {
-	console.log("函数删除")
-	editRef.value.openDialog();
-}
 const state = reactive<DataState>({
 	data: [],
 	loading: false,

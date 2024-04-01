@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"fmt"
 	"gocc/api/v1/demo"
 	"gocc/internal/app/demo/dao"
 	"gocc/internal/app/demo/model/do"
@@ -37,6 +38,7 @@ func (s *DemoDetailsImpl) DemoDetails01(ctx context.Context, UserName string) (r
 	return
 }
 func (s *DemoDetailsImpl) DemoDetailsAdd(ctx context.Context, req *demo.DetailsAddReq) (err error) {
+	fmt.Print("CESHI测试增加函数是否有效")
 	err = g.Try(ctx, func(ctx context.Context) {
 		_, err = dao.SysDetails.Ctx(ctx).Insert(do.SysDetails{
 			UserName: req.UserName,
