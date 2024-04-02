@@ -21,3 +21,11 @@ func (c *demoDetailsController) DemoDetailsAdd(ctx context.Context, req *demo.De
 	err = service.DemoDetails().DemoDetailsAdd(ctx, req)
 	return
 }
+func (c *demoDetailsController) DemoDetailsEdit(ctx context.Context, req *demo.DetailsEditReq) (res *demo.DetailsEditRes, err error) {
+	err = service.DemoDetails().DemoDetailsEdit(ctx, req)
+	return
+}
+func (c *demoDetailsController) DemoDetailsDetele(ctx context.Context, req *demo.DetailsDeleteReq) (res *demo.DetailsDeleteRes, err error) {
+	err = service.DemoDetails().DemoDetailsDetele(ctx, req)
+	return
+}

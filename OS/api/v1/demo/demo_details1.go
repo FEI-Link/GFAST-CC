@@ -15,7 +15,7 @@ type DetailsRes struct {
 	List   gdb.Result `json:"list"`
 }
 type DetailsAddReq struct {
-	g.Meta   `path:"/details/add" tags:"新增详情" method:"get" summary:"新增详情"`
+	g.Meta   `path:"/details/add" tags:"详情查询" method:"post" summary:"详情查询"`
 	UserName string      `json:"userName"   description:"用户名"`
 	Position string      `json:"position"   description:"职位信息"`
 	Bumen    string      `json:"bumen"      description:"所属部门"`
@@ -23,4 +23,24 @@ type DetailsAddReq struct {
 	State    string      `json:"state"      description:"目前在职状态"`
 }
 type DetailsAddRes struct {
+}
+type DetailsEditReq struct {
+	g.Meta   `path:"/details/edit" tags:"详情查询" method:"put" summary:"详情查询"`
+	UserName string      `json:"userName"   description:"用户名"`
+	Position string      `json:"position"   description:"职位信息"`
+	Bumen    string      `json:"bumen"      description:"所属部门"`
+	Ruzhiat  *gtime.Time `json:"ruzhiat"    description:"入职时间"`
+	State    string      `json:"state"      description:"目前在职状态"`
+}
+type DetailsEditRes struct {
+}
+type DetailsDeleteReq struct {
+	g.Meta   `path:"/details/delete" tags:"详情查询" method:"delete" summary:"详情查询"`
+	UserName string      `json:"userName"   description:"用户名"`
+	Position string      `json:"position"   description:"职位信息"`
+	Bumen    string      `json:"bumen"      description:"所属部门"`
+	Ruzhiat  *gtime.Time `json:"ruzhiat"    description:"入职时间"`
+	State    string      `json:"state"      description:"目前在职状态"`
+}
+type DetailsDeleteRes struct {
 }
