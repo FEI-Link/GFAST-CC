@@ -3,8 +3,8 @@
 		<el-card shadow="hover">
 			<div class="system-user-search mb15">
 				<el-form :model="tableData.param" ref="queryRef" :inline="true" label-width="68px">
-					<el-form-item label="个人ID" prop="userName" style="width: 200px;">
-						<el-input v-model="tableData.param.userName" placeholder="请输入ID号" clearable size="default"
+					<el-form-item label="个人ID" prop="userId" style="width: 200px;">
+						<el-input v-model="tableData.param.userId" placeholder="请输入ID号" clearable size="default"
 							@keyup.enter.native="getList" />
 					</el-form-item>
 					<el-form-item>
@@ -24,7 +24,9 @@
 				</el-form>
 			</div>
 			<el-table :data="tableData.data" style="width: 100%">
-				<el-table-column label="序号" align="center" prop="log_id" />
+				<!-- <el-table-column label="序号" align="center" prop="log_id" /> -->
+				<el-table-column label="操作号" align="center" prop="log_id" />
+				<el-table-column label="用户ID" align="center" prop="user_id" />
 				<el-table-column label="姓名" align="center" prop="user_name" />
 				<el-table-column label="职位信息" align="center" prop="position" />
 				<el-table-column label="所属部门" align="center" prop="bumen" />
@@ -34,7 +36,7 @@
 					<template #default="scope">
 						<el-dropdown>
 							<span class="el-dropdown-link">
-								操作<el-icon class="el-icon--right"><arrow-down /></el-icon>
+								...<el-icon class="el-icon--right"><arrow-down /></el-icon>
 							</span>
 							<template #dropdown>
 								<el-dropdown-menu>
@@ -61,13 +63,8 @@ import EditDetails from '/@/views/demo/details/component/editDetails.vue';
 
 // 定义接口来定义对象的类型
 interface TableData {
-	id: number;
-	fenJiHao: string;
-	userName: String;
-	group: string;
-	domain: string;
-	fenJiLeiXing: string;
-	address: string;
+	userName: string;
+	userId:string;
 }
 interface TableDataState {
 	ids: number[];
@@ -76,8 +73,8 @@ interface TableDataState {
 		total: number;
 		loading: boolean;
 		param: {
-			userName: String;
-			fenJiHao: string;
+			userName: string;
+			userId:string;
 			pageNum: number;
 			pageSize: number;
 		};
@@ -112,11 +109,11 @@ const onEdit = (row: Object) => {
 };
 
 const onDel = (row: TableData) => {
-	let msg = '你确定要删除所选坐席？';
-	let id: number = 0;
+	let msg = '你确定要删除所选信息？';
+	// let id: string = '1';
 	if (row) {
-		msg = `此操作将永久删除坐席：“${row.fenJiHao}”，是否继续?`
-		id = row.id
+		msg = `此操作将永久删除信息，是否继续?`
+		// id = row.userName
 	}
 
 	ElMessageBox.confirm(msg, '提示', {
@@ -125,7 +122,7 @@ const onDel = (row: TableData) => {
 		type: 'warning',
 	})
 		.then(() => {
-			deletedetails(id).then(() => {
+			deletedetails(state.tableData.param).then(() => {
 				ElMessage.success('删除成功');
 				getList();
 			})
@@ -141,7 +138,7 @@ const state = reactive<TableDataState>({
 		loading: false,
 		param: {
 			userName: '',
-			fenJiHao: '',
+			userId:'',
 			pageNum: 1,
 			pageSize: 10,
 		},

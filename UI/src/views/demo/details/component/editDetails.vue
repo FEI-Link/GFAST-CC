@@ -3,6 +3,9 @@
 	<div class="system-edit-post-container">
 		<el-dialog :title="(formData.id !== 0 ? '修改' : '添加') + '坐席'" v-model="isShowDialog" width="400px">
 			<el-form ref="formRef" :model="formData" :rules="rules" size="default" label-width="90px">
+				<el-form-item v-if="formData.id === 0"  label="用户ID" prop="user_id">
+					<el-input v-model="formData.user_id" placeholder="请输入唯一用户ID" />
+				</el-form-item>
 				<el-form-item label="姓名" prop="user_name">
 					<el-input v-model="formData.user_name" placeholder="请输入姓名" />
 				</el-form-item>
@@ -11,9 +14,6 @@
 				</el-form-item>
 				<el-form-item label="所属部门" prop="bumen">
 					<el-input v-model="formData.bumen" placeholder="请输入所属部门" />
-				</el-form-item>
-				<el-form-item label="入职时间" prop="creattime">
-					<el-input v-model="formData.creattime" placeholder="请输入入职时间" />
 				</el-form-item>
 				<el-form-item label="在职状态" prop="state">
 					<el-input v-model="formData.state" placeholder="请输入在职状态" />
@@ -38,12 +38,9 @@ import { ElMessage } from "element-plus";
 
 interface FormState {
 	id: number;
-	fenJiHao: string;
-	group: string;
-	domain: string;
-	fenJiLeiXing: string;
-	address: string;
+	log_id: string;
 	user_name: string;
+	user_id: string;
 	position: string;
 	bumen: string;
 	creattime: string;
@@ -62,11 +59,8 @@ const state = reactive<ZhiShiKuState>({
 	isShowDialog: false,
 	formData: {
 		id: 0,
-		fenJiHao: '',
-		group: '',
-		domain: '',
-		fenJiLeiXing: '',
-		address: '',
+		log_id:'',
+		user_id: '',
 		user_name: '',
 		position: '',
 		bumen: '',
@@ -81,20 +75,14 @@ const state = reactive<ZhiShiKuState>({
 		position: [
 			{ required: true, message: "职务不能为空", trigger: "blur" }
 		],
-		// address: [
-		// 	{ required: true, message: "服务地址不能为空", trigger: "blur" }
-		// ],
 	}
 })
 
 const resetForm = () => {
 	state.formData = {
 		id: 0,
-		fenJiHao: '',
-		group: '',
-		domain: '',
-		fenJiLeiXing: '',
-		address: '',
+		log_id:'',
+		user_id: '',
 		user_name: '',
 		position: '',
 		bumen: '',
@@ -136,7 +124,7 @@ const onSubmit = () => {
 				// 发送到后台
 				console.log("测试是否调用了添加函数");
 				adddetails(state.formData).then(() => {
-					ElMessage.success('坐席添加成功');
+					ElMessage.success('新职务信息添加成功');
 					closeDialog(); // 关闭弹窗
 					emit('dataList');// 给父窗口发送事件
 				}).finally(() => {
@@ -145,7 +133,7 @@ const onSubmit = () => {
 			} else {
 				// 发送到后台
 				editdetails(state.formData).then(() => {
-					ElMessage.success('坐席修改成功');
+					ElMessage.success('职务信息修改成功');
 					closeDialog(); // 关闭弹窗
 					emit('dataList');// 给父窗口发送事件
 				}).finally(() => {

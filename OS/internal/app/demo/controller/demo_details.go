@@ -14,7 +14,7 @@ type demoDetailsController struct {
 
 func (c *demoDetailsController) DemoDetails01(ctx context.Context, req *demo.DetailsReq) (res *demo.DetailsRes, err error) {
 	res = new(demo.DetailsRes)
-	res.List, err = service.DemoDetails().DemoDetails01(ctx, req.UserName)
+	res.List, err = service.DemoDetails().DemoDetails01(ctx, req.UserId)
 	return
 }
 func (c *demoDetailsController) DemoDetailsAdd(ctx context.Context, req *demo.DetailsAddReq) (res *demo.DetailsAddRes, err error) {
@@ -26,6 +26,6 @@ func (c *demoDetailsController) DemoDetailsEdit(ctx context.Context, req *demo.D
 	return
 }
 func (c *demoDetailsController) DemoDetailsDetele(ctx context.Context, req *demo.DetailsDeleteReq) (res *demo.DetailsDeleteRes, err error) {
-	err = service.DemoDetails().DemoDetailsDetele(ctx, req)
+	err = service.DemoDetails().DemoDetailsDetele(ctx, req.LogId)
 	return
 }

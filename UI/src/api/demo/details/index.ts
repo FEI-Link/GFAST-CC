@@ -1,7 +1,7 @@
 import request from '/@/utils/request';
 //对任职信息进行操作
 export function getdetails(query?:Object) {
-    console.log("函数触发测试二阶段：",query);
+    console.log("函数查询测试：",query);
     return request({
         url: '/api/v1/demo/details/list',
         method: 'get',
@@ -29,10 +29,11 @@ export function editdetails(data:object) {
 }
 
 
-export function deletedetails(id:number) {
+export function deletedetails(data:object) {
+    console.log("函数删除测试：",data);
     return request({
         url: '/api/v1/demo/details/delete',
         method: 'delete',
-        data:{id}
+        data:data
     })
 }

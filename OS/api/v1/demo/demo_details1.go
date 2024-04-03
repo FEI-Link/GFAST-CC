@@ -9,6 +9,7 @@ import (
 type DetailsReq struct {
 	g.Meta   `path:"/details/list" tags:"详情查询" method:"get" summary:"详情查询"`
 	UserName string `json:"userName"   description:"用户名"`
+	UserId   int64  `json:"userId"     description:"和用户表中用户号一致，用于绑定"`
 }
 type DetailsRes struct {
 	g.Meta `mime:"application/json"`
@@ -16,6 +17,7 @@ type DetailsRes struct {
 }
 type DetailsAddReq struct {
 	g.Meta   `path:"/details/add" tags:"详情查询" method:"post" summary:"详情查询"`
+	UserId   int64       `json:"userId"     description:"和用户表中用户号一致，用于绑定"`
 	UserName string      `json:"userName"   description:"用户名"`
 	Position string      `json:"position"   description:"职位信息"`
 	Bumen    string      `json:"bumen"      description:"所属部门"`
@@ -26,6 +28,8 @@ type DetailsAddRes struct {
 }
 type DetailsEditReq struct {
 	g.Meta   `path:"/details/edit" tags:"详情查询" method:"put" summary:"详情查询"`
+	LogId    uint        `json:"logId"      description:"表示本表记录的ID"`
+	UserId   int64       `json:"userId"     description:"和用户表中用户号一致，用于绑定"`
 	UserName string      `json:"userName"   description:"用户名"`
 	Position string      `json:"position"   description:"职位信息"`
 	Bumen    string      `json:"bumen"      description:"所属部门"`
@@ -35,12 +39,9 @@ type DetailsEditReq struct {
 type DetailsEditRes struct {
 }
 type DetailsDeleteReq struct {
-	g.Meta   `path:"/details/delete" tags:"详情查询" method:"delete" summary:"详情查询"`
-	UserName string      `json:"userName"   description:"用户名"`
-	Position string      `json:"position"   description:"职位信息"`
-	Bumen    string      `json:"bumen"      description:"所属部门"`
-	Ruzhiat  *gtime.Time `json:"ruzhiat"    description:"入职时间"`
-	State    string      `json:"state"      description:"目前在职状态"`
+	g.Meta `path:"/details/delete" tags:"详情查询" method:"delete" summary:"详情查询"`
+	UserId int64 `json:"userId"     description:"和用户表中用户号一致，用于绑定"`
+	LogId  uint  `json:"logId"      description:"表示本表记录的ID"`
 }
 type DetailsDeleteRes struct {
 }
