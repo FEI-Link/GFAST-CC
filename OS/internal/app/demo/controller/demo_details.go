@@ -26,6 +26,6 @@ func (c *demoDetailsController) DemoDetailsEdit(ctx context.Context, req *demo.D
 	return
 }
 func (c *demoDetailsController) DemoDetailsDetele(ctx context.Context, req *demo.DetailsDeleteReq) (res *demo.DetailsDeleteRes, err error) {
-	err = service.DemoDetails().DemoDetailsDetele(ctx, req.LogId)
+	err = service.DemoDetails().DemoDetailsDetele(ctx, req)
 	return
 }

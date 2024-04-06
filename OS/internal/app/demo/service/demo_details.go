@@ -25,7 +25,7 @@ type IDemoDetails interface {
 	DemoDetails01(ctx context.Context, UserId int64) (rs gdb.Result, err error)
 	DemoDetailsAdd(ctx context.Context, req *demo.DetailsAddReq) (err error)
 	DemoDetailsEdit(ctx context.Context, req *demo.DetailsEditReq) (err error)
-	DemoDetailsDetele(ctx context.Context, LogId uint) (err error)
+	DemoDetailsDetele(ctx context.Context, req *demo.DetailsDeleteReq) (err error)
 }
 
 func (s *DemoDetailsImpl) DemoDetails01(ctx context.Context, UserId int64) (rs gdb.Result, err error) {
@@ -53,7 +53,7 @@ func (s *DemoDetailsImpl) DemoDetailsAdd(ctx context.Context, req *demo.DetailsA
 }
 func (s *DemoDetailsImpl) DemoDetailsEdit(ctx context.Context, req *demo.DetailsEditReq) (err error) {
 	err = g.Try(ctx, func(ctx context.Context) {
-		_, err = dao.SysDetails.Ctx(ctx).WherePri(req.UserId).Update(do.SysDetails{
+		_, err = dao.SysDetails.Ctx(ctx).Where(dao.SysDetails.Columns().UserId, req.UserId).Update(do.SysDetails{
 			UserName: req.UserName,
 			Position: req.Position,
 			Bumen:    req.Bumen,
@@ -63,10 +63,10 @@ func (s *DemoDetailsImpl) DemoDetailsEdit(ctx context.Context, req *demo.Details
 	})
 	return
 }
-func (s *DemoDetailsImpl) DemoDetailsDetele(ctx context.Context, LogId uint) (err error) {
+func (s *DemoDetailsImpl) DemoDetailsDetele(ctx context.Context, req *demo.DetailsDeleteReq) (err error) {
 	// currentTime := time.Now() // 获取当前时间
 	err = g.Try(ctx, func(ctx context.Context) {
-		_, err = dao.SysDetails.Ctx(ctx).WherePri(LogId).Delete()
+		_, err = dao.SysDetails.Ctx(ctx).Where(dao.SysDetails.Columns().UserId, req.UserId).Delete()
 		liberr.ErrIsNil(ctx, err, "删除失败")
 	})
 	return

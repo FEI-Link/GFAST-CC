@@ -25,13 +25,14 @@
 			</div>
 			<el-table :data="tableData.data" style="width: 100%">
 				<!-- <el-table-column label="序号" align="center" prop="log_id" /> -->
-				<el-table-column label="操作号" align="center" prop="log_id" />
+	
 				<el-table-column label="用户ID" align="center" prop="user_id" />
 				<el-table-column label="姓名" align="center" prop="user_name" />
 				<el-table-column label="职位信息" align="center" prop="position" />
 				<el-table-column label="所属部门" align="center" prop="bumen" />
 				<el-table-column label="入职时间" align="center" prop="creattime" />
 				<el-table-column label="在职状态" align="center" prop="state" />
+				<!-- <el-table-column label="操作号" align="center" prop="log_id" /> -->
 				<el-table-column label="操作" width="100">
 					<template #default="scope">
 						<el-dropdown>
@@ -75,6 +76,7 @@ interface TableDataState {
 		param: {
 			userName: string;
 			userId:string;
+			logId:string;
 			pageNum: number;
 			pageSize: number;
 		};
@@ -139,6 +141,7 @@ const state = reactive<TableDataState>({
 		param: {
 			userName: '',
 			userId:'',
+			logId:'',
 			pageNum: 1,
 			pageSize: 10,
 		},
