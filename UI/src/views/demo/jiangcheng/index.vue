@@ -18,7 +18,7 @@
 							<el-icon>
 								<ele-FolderAdd />
 							</el-icon>
-							新增详细信息
+							新增奖惩记录
 						</el-button>
 					</el-form-item>
 				</el-form>
