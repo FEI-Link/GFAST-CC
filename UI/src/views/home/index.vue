@@ -94,7 +94,7 @@ export default defineComponent({
 				{
 					num1: '125,12',
 					num2: '-12.32',
-					num3: '测试数据',
+					num3: '本月计划',
 					num4: 'fa fa-meetup',
 					color1: '#FF6462',
 					color2: '--next-color-primary-lighter',
@@ -198,7 +198,7 @@ export default defineComponent({
 			const option = {
 				backgroundColor: state.charts.bgColor,
 				title: {
-					text: '曲线图测试数据',
+					text: '完成计划统计',
 					x: 'left',
 					textStyle: { fontSize: '15', color: state.charts.color },
 				},

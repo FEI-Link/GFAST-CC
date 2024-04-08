@@ -33,7 +33,7 @@
 
 <script setup lang="ts">
 import { reactive, toRefs, ref, unref } from 'vue';
-import { getdetails, adddetails, editdetails, deletedetails } from '/@/api/demo/details';
+import { addjiangcheng, editjiangcheng  } from '/@/api/demo/jiangcheng';
 import { ElMessage } from "element-plus";
 
 interface FormState {
@@ -123,7 +123,7 @@ const onSubmit = () => {
 			if (state.formData.id === 0) {
 				// 发送到后台
 				console.log("测试是否调用了添加函数");
-				adddetails(state.formData).then(() => {
+				addjiangcheng(state.formData).then(() => {
 					ElMessage.success('新职务信息添加成功');
 					closeDialog(); // 关闭弹窗
 					emit('dataList');// 给父窗口发送事件
@@ -132,7 +132,7 @@ const onSubmit = () => {
 				})
 			} else {
 				// 发送到后台
-				editdetails(state.formData).then(() => {
+				editjiangcheng(state.formData).then(() => {
 					ElMessage.success('职务信息修改成功');
 					closeDialog(); // 关闭弹窗
 					emit('dataList');// 给父窗口发送事件
