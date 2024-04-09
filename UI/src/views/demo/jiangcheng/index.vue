@@ -28,7 +28,7 @@
 	
 				<el-table-column label="用户ID" align="center" prop="id" />
 				<el-table-column label="姓名" align="center" prop="name" />
-				<el-table-column label="所属部门" align="center" prop="name" />
+				<el-table-column label="所属部门" align="center" prop="bumen" />
 				<el-table-column label="性质" align="center" prop="switch" />
 				<el-table-column label="标题" align="center" prop="biaoti" />
 				<el-table-column label="内容" align="center" prop="neirong" />
