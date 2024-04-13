@@ -4,7 +4,7 @@
 			<div class="system-user-search mb15">
 				<el-form :model="tableData.param" ref="queryRef" :inline="true" label-width="68px">
 					<el-form-item label="个人ID" prop="userId" style="width: 200px;">
-						<el-input v-model="tableData.param.userId" placeholder="请输入ID号" clearable size="default"
+						<el-input v-model="tableData.param.userId" placeholder="请输入个人ID号" clearable size="default"
 							@keyup.enter.native="getList" />
 					</el-form-item>
 					<el-form-item>
@@ -49,8 +49,8 @@
 					</template>
 				</el-table-column>
 			</el-table>
-			<pagination v-show="tableData.total > tableData.param.pageSize" :total="tableData.total"
-				v-model:page="tableData.param.pageNum" v-model:limit="tableData.param.pageSize" @pagination="getList" />
+			<!-- <pagination v-show="tableData.total > tableData.param.pageSize" :total="tableData.total"
+				v-model:page="tableData.param.pageNum" v-model:limit="tableData.param.pageSize" @pagination="getList" /> -->
 		</el-card>
 		<Editjiangcheng ref="editRef" @dataList="getList" />
 	</div>
@@ -74,11 +74,11 @@ interface TableDataState {
 		total: number;
 		loading: boolean;
 		param: {
-			userName: string;
+			// userName: string;
 			userId:string;
-			logId:string;
-			pageNum: number;
-			pageSize: number;
+			// logId:string;
+			// pageNum: number;
+			// pageSize: number;
 		};
 	};
 }
@@ -139,11 +139,11 @@ const state = reactive<TableDataState>({
 		total: 0,
 		loading: false,
 		param: {
-			userName: '',
+			// userName: '',
 			userId:'',
-			logId:'',
-			pageNum: 1,
-			pageSize: 10,
+			// logId:'',
+			// pageNum: 1,
+			// pageSize: 10,
 		},
 	},
 });
