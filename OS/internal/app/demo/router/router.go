@@ -26,6 +26,7 @@ func (router *Router) BindController(ctx context.Context, group *ghttp.RouterGro
 		group.Bind(
 			controller.DemoDetails,
 			controller.DemoJiangCheng,
+			controller.DemoStudy,
 		)
 		if err := libRouter.RouterAutoBind(ctx, router, group); err != nil {
 			panic(err)

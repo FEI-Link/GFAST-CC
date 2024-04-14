@@ -18,7 +18,7 @@
 							<el-icon>
 								<ele-FolderAdd />
 							</el-icon>
-							新增详细信息
+							新增学习记录
 						</el-button>
 					</el-form-item>
 				</el-form>
@@ -27,12 +27,10 @@
 				<!-- <el-table-column label="序号" align="center" prop="log_id" /> -->
 	
 				<el-table-column label="用户ID" align="center" prop="user_id" />
-				<el-table-column label="姓名" align="center" prop="user_name" />
-				<el-table-column label="职位信息" align="center" prop="position" />
-				<el-table-column label="所属部门" align="center" prop="bumen" />
-				<el-table-column label="入职时间" align="center" prop="creattime" />
-				<el-table-column label="在职状态" align="center" prop="state" />
-				<!-- <el-table-column label="操作号" align="center" prop="log_id" /> -->
+				<el-table-column label="姓名" align="center" prop="user_nickname" />
+				<el-table-column label="学历记录" align="center" prop="study" />
+				<el-table-column label="详细内容" align="center" prop="study_de" />
+				<el-table-column label="记录时间" align="center" prop="createat" />
 				<el-table-column label="操作" width="100">
 					<template #default="scope">
 						<el-dropdown>
@@ -59,8 +57,8 @@
 <script setup lang="ts">
 import { ElMessage, ElMessageBox } from 'element-plus';
 import { toRefs, reactive, onMounted, ref, toRaw } from 'vue';
-import { getjiangcheng, deletejiangcheng } from '/@/api/demo/jiangcheng';
-import Editjiangcheng from '/@/views/demo/jiangcheng/component/editDetails.vue';
+import { getstudy, deletestudys } from '/@/api/demo/study';
+import Editjiangcheng from '/@/views/demo/study/component/editDetails.vue';
 
 // 定义接口来定义对象的类型
 interface TableData {
@@ -83,17 +81,8 @@ interface TableDataState {
 	};
 }
 
-//   onMounted(() => {
-// 	initView();
-//   });
-
-//   const initView = () => {
-// 	// 查询列表
-// 	getList();
-//   };
-
 const getList = () => {
-	getjiangcheng(state.tableData.param).then((res: any) => {
+	getstudy(state.tableData.param).then((res: any) => {
 		state.tableData.data = res.data.list;
 		state.tableData.total = res.data.total;
 	});
@@ -124,7 +113,7 @@ const onDel = (row: TableData) => {
 		type: 'warning',
 	})
 		.then(() => {
-			deletejiangcheng(state.tableData.param).then(() => {
+			deletestudys(state.tableData.param).then(() => {
 				ElMessage.success('删除成功');
 				getList();
 			})

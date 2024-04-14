@@ -6,18 +6,13 @@
 				<el-form-item v-if="formData.id === 0"  label="用户ID" prop="user_id">
 					<el-input v-model="formData.user_id" placeholder="请输入唯一用户ID" />
 				</el-form-item>
-				<el-form-item label="姓名" prop="user_name">
-					<el-input v-model="formData.user_name" placeholder="请输入姓名" />
+				<el-form-item label="学历记录" prop="study">
+					<el-input v-model="formData.study" placeholder="请输入学历信息" />
 				</el-form-item>
-				<el-form-item label="职位信息" prop="position">
-					<el-input v-model="formData.position" placeholder="请输入职位信息" />
+				<el-form-item label="详细内容" prop="study_de">
+					<el-input v-model="formData.study_de" placeholder="请输入学历详细信息" />
 				</el-form-item>
-				<el-form-item label="所属部门" prop="bumen">
-					<el-input v-model="formData.bumen" placeholder="请输入所属部门" />
-				</el-form-item>
-				<el-form-item label="在职状态" prop="state">
-					<el-input v-model="formData.state" placeholder="请输入在职状态" />
-				</el-form-item>
+	
 			</el-form>
 			<template #footer>
 				<span class="dialog-footer">
@@ -33,18 +28,14 @@
 
 <script setup lang="ts">
 import { reactive, toRefs, ref, unref } from 'vue';
-import { getdetails, adddetails, editdetails, deletedetails } from '/@/api/demo/details';
+import {addstudy, editstudy } from '/@/api/demo/study';
 import { ElMessage } from "element-plus";
 
 interface FormState {
 	id: number;
-	log_id: string;
-	user_name: string;
+	study: string;
+	study_de: string;
 	user_id: string;
-	position: string;
-	bumen: string;
-	creattime: string;
-	state: string;
 }
 interface ZhiShiKuState {
 	isShowDialog: boolean;
@@ -59,13 +50,9 @@ const state = reactive<ZhiShiKuState>({
 	isShowDialog: false,
 	formData: {
 		id: 0,
-		log_id:'',
+		study:'',
 		user_id: '',
-		user_name: '',
-		position: '',
-		bumen: '',
-		creattime: '',
-		state: '',
+		study_de: '',
 	},
 	// 表单校验
 	rules: {
@@ -81,13 +68,9 @@ const state = reactive<ZhiShiKuState>({
 const resetForm = () => {
 	state.formData = {
 		id: 0,
-		log_id:'',
+		study:'',
 		user_id: '',
-		user_name: '',
-		position: '',
-		bumen: '',
-		creattime: '',
-		state: '',
+		study_de: '',
 	}
 };
 
@@ -123,7 +106,7 @@ const onSubmit = () => {
 			if (state.formData.id === 0) {
 				// 发送到后台
 				console.log("测试是否调用了添加函数");
-				adddetails(state.formData).then(() => {
+				addstudy(state.formData).then(() => {
 					ElMessage.success('新职务信息添加成功');
 					closeDialog(); // 关闭弹窗
 					emit('dataList');// 给父窗口发送事件
@@ -132,7 +115,7 @@ const onSubmit = () => {
 				})
 			} else {
 				// 发送到后台
-				editdetails(state.formData).then(() => {
+				editstudy(state.formData).then(() => {
 					ElMessage.success('职务信息修改成功');
 					closeDialog(); // 关闭弹窗
 					emit('dataList');// 给父窗口发送事件
