@@ -25,6 +25,7 @@ func (router *Router) BindController(ctx context.Context, group *ghttp.RouterGro
 		//自动绑定定义的控制器
 		group.Bind(
 			controller.DemoDetails,
+			controller.DemoJiangCheng,
 		)
 		if err := libRouter.RouterAutoBind(ctx, router, group); err != nil {
 			panic(err)

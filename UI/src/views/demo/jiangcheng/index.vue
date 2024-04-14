@@ -24,15 +24,13 @@
 				</el-form>
 			</div>
 			<el-table :data="tableData.data" style="width: 100%">
-				<!-- <el-table-column label="序号" align="center" prop="log_id" /> -->
-	
-				<el-table-column label="用户ID" align="center" prop="id" />
-				<el-table-column label="姓名" align="center" prop="name" />
-				<el-table-column label="所属部门" align="center" prop="bumen" />
+				<el-table-column label="用户ID" align="center" prop="userId" />
+				<el-table-column label="姓名" align="center" prop="userNickname" />
+				<el-table-column label="所属部门" align="center" prop="deptName" />
 				<el-table-column label="性质" align="center" prop="switch" />
-				<el-table-column label="标题" align="center" prop="biaoti" />
+				<el-table-column label="标题" align="center" prop="title" />
 				<el-table-column label="内容" align="center" prop="neirong" />
-				<el-table-column label="发布人" align="center" prop="fabu" />
+				<!-- <el-table-column label="发布人" align="center" prop="fabu" /> -->
 				<el-table-column label="操作" width="100">
 					<template #default="scope">
 						<el-dropdown>
