@@ -72,9 +72,8 @@ interface TableDataState {
 		total: number;
 		loading: boolean;
 		param: {
-			userName: string;
 			userId:string;
-			logId:string;
+			id:string;
 			pageNum: number;
 			pageSize: number;
 		};
@@ -128,9 +127,8 @@ const state = reactive<TableDataState>({
 		total: 0,
 		loading: false,
 		param: {
-			userName: '',
 			userId:'',
-			logId:'',
+			id:'',
 			pageNum: 1,
 			pageSize: 10,
 		},
