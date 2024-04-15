@@ -65,10 +65,10 @@ func (s *DemoJiangChengImpl) DemoJiangChengEdit(ctx context.Context, req *demo.J
 	})
 	return
 }
-func (s *DemoJiangChengImpl) DemoJiangChengDetele(ctx context.Context, req *demo.JiangDeleteReq) (err error) {
+func (s *DemoJiangChengImpl) DemoJiangChengDetele(ctx context.Context, req *demo.DetailsDeleteReq) (err error) {
 	// currentTime := time.Now() // 获取当前时间
 	err = g.Try(ctx, func(ctx context.Context) {
-		_, err = dao.SysJiangcheng.Ctx(ctx).Where(dao.SysJiangcheng.Columns().UserId, req.UserId).Delete()
+		_, err = dao.SysDetails.Ctx(ctx).Where(dao.SysDetails.Columns().UserId, req.UserId).Delete()
 		liberr.ErrIsNil(ctx, err, "删除失败")
 	})
 	return
