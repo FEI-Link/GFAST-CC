@@ -13,22 +13,22 @@ import (
 	"github.com/gogf/gf/v2/os/gtime"
 )
 
-var demoStudyService = DemoStudyImpl{}
+var demoReviewService = DemoReviewImpl{}
 
-func DemoStudy() IDemoStudy {
-	return &demoStudyService
+func DemoReview() IDemoReview {
+	return &demoReviewService
 }
 
-type DemoStudyImpl struct {
+type DemoReviewImpl struct {
 }
-type IDemoStudy interface {
-	DemoStudyList(ctx context.Context, req *demo.StudyReq) (rs gdb.Result, err error)
-	DemoStudyAdd(ctx context.Context, req *demo.StudyAddReq) (err error)
-	DemoStudyEdit(ctx context.Context, req *demo.StudyEditReq) (err error)
-	DemoStudyDetele(ctx context.Context, req *demo.StudyDeleteReq) (err error)
+type IDemoReview interface {
+	DemoReviewList(ctx context.Context, req *demo.ReviewReq) (rs gdb.Result, err error)
+	DemoReviewAdd(ctx context.Context, req *demo.ReviewAddReq) (err error)
+	DemoReviewEdit(ctx context.Context, req *demo.ReviewEditReq) (err error)
+	DemoReviewDetele(ctx context.Context, req *demo.ReviewDeleteReq) (err error)
 }
 
-func (s *DemoStudyImpl) DemoStudyList(ctx context.Context, req *demo.StudyReq) (rs gdb.Result, err error) {
+func (s *DemoReviewImpl) DemoReviewList(ctx context.Context, req *demo.ReviewReq) (rs gdb.Result, err error) {
 	rs, err = g.DB().GetAll(ctx, `SELECT s.id,s.user_id,u.user_nickname,s.study,s.study_de,s.createat
 	from sys_study s 
 	left join sys_user u on s.user_id=u.id
@@ -36,7 +36,7 @@ func (s *DemoStudyImpl) DemoStudyList(ctx context.Context, req *demo.StudyReq) (
 `, req.UserId)
 	return
 }
-func (s *DemoStudyImpl) DemoStudyAdd(ctx context.Context, req *demo.StudyAddReq) (err error) {
+func (s *DemoReviewImpl) DemoReviewAdd(ctx context.Context, req *demo.ReviewAddReq) (err error) {
 	currentTime := time.Now() // 获取当前时间
 	err = g.Try(ctx, func(ctx context.Context) {
 		_, err = dao.SysStudy.Ctx(ctx).Insert(do.SysStudy{
@@ -49,7 +49,7 @@ func (s *DemoStudyImpl) DemoStudyAdd(ctx context.Context, req *demo.StudyAddReq)
 	})
 	return
 }
-func (s *DemoStudyImpl) DemoStudyEdit(ctx context.Context, req *demo.StudyEditReq) (err error) {
+func (s *DemoReviewImpl) DemoReviewEdit(ctx context.Context, req *demo.ReviewEditReq) (err error) {
 	err = g.Try(ctx, func(ctx context.Context) {
 		_, err = dao.SysStudy.Ctx(ctx).Where(dao.SysStudy.Columns().Id, req.Id).Update(do.SysStudy{
 			Study:   req.Study,
@@ -59,7 +59,7 @@ func (s *DemoStudyImpl) DemoStudyEdit(ctx context.Context, req *demo.StudyEditRe
 	})
 	return
 }
-func (s *DemoStudyImpl) DemoStudyDetele(ctx context.Context, req *demo.StudyDeleteReq) (err error) {
+func (s *DemoReviewImpl) DemoReviewDetele(ctx context.Context, req *demo.ReviewDeleteReq) (err error) {
 	err = g.Try(ctx, func(ctx context.Context) {
 		_, err = dao.SysStudy.Ctx(ctx).Where(dao.SysStudy.Columns().Id, req.Id).Delete()
 		liberr.ErrIsNil(ctx, err, "删除失败")

@@ -37,7 +37,7 @@ func (s *DemoJiangChengImpl) DemoJiangChengList(ctx context.Context, req *demo.J
 	left join sys_user  u on j.user_id=u.id
 	left join sys_dept d on u.dept_id=d.dept_id
 	left join sys_user u1 on j.createby=u1.id
-	where j.user_id=?
+	where j.user_id=? and deleteat IS null
 `, req.UserId)
 	return
 }
@@ -65,10 +65,9 @@ func (s *DemoJiangChengImpl) DemoJiangChengEdit(ctx context.Context, req *demo.J
 	})
 	return
 }
-func (s *DemoJiangChengImpl) DemoJiangChengDetele(ctx context.Context, req *demo.DetailsDeleteReq) (err error) {
-	// currentTime := time.Now() // 获取当前时间
+func (s *DemoJiangChengImpl) DemoJiangChengDetele(ctx context.Context, req *demo.JiangDeleteReq) (err error) {
 	err = g.Try(ctx, func(ctx context.Context) {
-		_, err = dao.SysDetails.Ctx(ctx).Where(dao.SysDetails.Columns().UserId, req.UserId).Delete()
+		_, err = dao.SysJiangcheng.Ctx(ctx).Where(dao.SysJiangcheng.Columns().UserId, req.UserId).Delete()
 		liberr.ErrIsNil(ctx, err, "删除失败")
 	})
 	return

@@ -24,8 +24,7 @@
 				</el-form>
 			</div>
 			<el-table :data="tableData.data" style="width: 100%">
-				<!-- <el-table-column label="序号" align="center" prop="log_id" /> -->
-	
+				<el-table-column label="序号" align="center" prop="id" />
 				<el-table-column label="用户ID" align="center" prop="user_id" />
 				<el-table-column label="姓名" align="center" prop="user_nickname" />
 				<el-table-column label="学历记录" align="center" prop="study" />
@@ -64,6 +63,7 @@ import Editjiangcheng from '/@/views/demo/study/component/editDetails.vue';
 interface TableData {
 	userName: string;
 	userId:string;
+	id: number;
 }
 interface TableDataState {
 	ids: number[];
@@ -73,7 +73,7 @@ interface TableDataState {
 		loading: boolean;
 		param: {
 			userId:string;
-			id:string;
+			id: number;
 			pageNum: number;
 			pageSize: number;
 		};
@@ -100,12 +100,9 @@ const onEdit = (row: Object) => {
 
 const onDel = (row: TableData) => {
 	let msg = '你确定要删除所选信息？';
-	// let id: string = '1';
 	if (row) {
 		msg = `此操作将永久删除信息，是否继续?`
-		// id = row.userName
 	}
-
 	ElMessageBox.confirm(msg, '提示', {
 		confirmButtonText: '确认',
 		cancelButtonText: '取消',
@@ -128,7 +125,7 @@ const state = reactive<TableDataState>({
 		loading: false,
 		param: {
 			userId:'',
-			id:'',
+			id: 0,
 			pageNum: 1,
 			pageSize: 10,
 		},

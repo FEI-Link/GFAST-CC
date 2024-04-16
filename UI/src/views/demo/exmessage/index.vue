@@ -18,20 +18,19 @@
 							<el-icon>
 								<ele-FolderAdd />
 							</el-icon>
-							新增详细信息
+							新增额外信息
 						</el-button>
 					</el-form-item>
 				</el-form>
 			</div>
 			<el-table :data="tableData.data" style="width: 100%">
 				<!-- <el-table-column label="序号" align="center" prop="log_id" /> -->
-	
 				<el-table-column label="用户ID" align="center" prop="user_id" />
 				<el-table-column label="姓名" align="center" prop="user_name" />
-				<el-table-column label="职位信息" align="center" prop="position" />
-				<el-table-column label="所属部门" align="center" prop="bumen" />
-				<el-table-column label="入职时间" align="center" prop="creattime" />
-				<el-table-column label="在职状态" align="center" prop="state" />
+				<el-table-column label="额外信息" align="center" prop="position" />
+				<el-table-column label="创建时间" align="center" prop="bumen" />
+				<!-- <el-table-column label="入职时间" align="center" prop="creattime" /> -->
+				<!-- <el-table-column label="在职状态" align="center" prop="state" /> -->
 				<!-- <el-table-column label="操作号" align="center" prop="log_id" /> -->
 				<el-table-column label="操作" width="100">
 					<template #default="scope">
@@ -52,15 +51,15 @@
 			<pagination v-show="tableData.total > tableData.param.pageSize" :total="tableData.total"
 				v-model:page="tableData.param.pageNum" v-model:limit="tableData.param.pageSize" @pagination="getList" />
 		</el-card>
-		<Editjiangcheng ref="editRef" @dataList="getList" />
+		<Editexmassage ref="editRef" @dataList="getList" />
 	</div>
 </template>
 
 <script setup lang="ts">
 import { ElMessage, ElMessageBox } from 'element-plus';
 import { toRefs, reactive, onMounted, ref, toRaw } from 'vue';
-import { getjiangcheng, deletejiangcheng } from '/@/api/demo/jiangcheng';
-import Editjiangcheng from '/@/views/demo/jiangcheng/component/editDetails.vue';
+import { getexmessage, deleteexmessage } from '/@/api/demo/exmessage';
+import Editexmassage from '/@/views/demo/exmessage/component/editDetails.vue';
 
 // 定义接口来定义对象的类型
 interface TableData {
@@ -93,7 +92,7 @@ interface TableDataState {
 //   };
 
 const getList = () => {
-	getjiangcheng(state.tableData.param).then((res: any) => {
+	getexmessage(state.tableData.param).then((res: any) => {
 		state.tableData.data = res.data.list;
 		state.tableData.total = res.data.total;
 	});
@@ -124,7 +123,7 @@ const onDel = (row: TableData) => {
 		type: 'warning',
 	})
 		.then(() => {
-			deletejiangcheng(state.tableData.param).then(() => {
+			deleteexmessage(state.tableData.param).then(() => {
 				ElMessage.success('删除成功');
 				getList();
 			})
