@@ -14,5 +14,5 @@ type SysUserex struct {
 	UserId   int         `json:"userId"   description:""`
 	UserEx   string      `json:"userEx"   description:"拓展信息"`
 	Createat *gtime.Time `json:"createat" description:""`
-	Delete   int         `json:"delete"   description:"判断是否删除"`
+	DeleteIs int         `json:"deleteIs" description:"判断是否删除"`
 }

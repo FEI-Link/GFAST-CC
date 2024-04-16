@@ -24,7 +24,7 @@ type SysUserexColumns struct {
 	UserId   string //
 	UserEx   string // 拓展信息
 	Createat string //
-	Delete   string // 判断是否删除
+	DeleteIs string // 判断是否删除
 }
 
 // sysUserexColumns holds the columns for table sys_userex.
@@ -33,7 +33,7 @@ var sysUserexColumns = SysUserexColumns{
 	UserId:   "user_id",
 	UserEx:   "user_ex",
 	Createat: "createat",
-	Delete:   "delete",
+	DeleteIs: "delete_is",
 }
 
 // NewSysUserexDao creates and returns a new DAO object for table data access.

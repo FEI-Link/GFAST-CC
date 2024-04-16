@@ -29,20 +29,18 @@ type IDemoExmessage interface {
 }
 
 func (s *DemoExmessageImpl) DemoExmassageList(ctx context.Context, req *demo.ExmessageReq) (rs gdb.Result, err error) {
-	rs, err = g.DB().GetAll(ctx, `SELECT s.id,s.user_id,u.user_nickname,s.study,s.study_de,s.createat
-	from sys_study s 
-	left join sys_user u on s.user_id=u.id
-	where s.user_id=?
+	rs, err = g.DB().GetAll(ctx, `select ex.id,ex.user_id,u.user_nickname, ex.user_ex,ex.createat from sys_userex  ex
+	left join sys_user u on ex.user_id=u.id
+	where u.id=? and  delete_is=0 or delete_is is null
 `, req.UserId)
 	return
 }
 func (s *DemoExmessageImpl) DemoExmassageAdd(ctx context.Context, req *demo.ExmessageAddReq) (err error) {
 	currentTime := time.Now() // 获取当前时间
 	err = g.Try(ctx, func(ctx context.Context) {
-		_, err = dao.SysStudy.Ctx(ctx).Insert(do.SysStudy{
+		_, err = dao.SysUserex.Ctx(ctx).Insert(do.SysUserex{
 			UserId:   req.UserId,
-			Study:    req.Study,
-			StudyDe:  req.StudyDe,
+			UserEx:   req.UserEx,
 			Createat: gtime.New(currentTime),
 		})
 		liberr.ErrIsNil(ctx, err, "添加失败")
@@ -51,9 +49,8 @@ func (s *DemoExmessageImpl) DemoExmassageAdd(ctx context.Context, req *demo.Exme
 }
 func (s *DemoExmessageImpl) DemoExmassageEdit(ctx context.Context, req *demo.ExmessageEditReq) (err error) {
 	err = g.Try(ctx, func(ctx context.Context) {
-		_, err = dao.SysStudy.Ctx(ctx).Where(dao.SysStudy.Columns().Id, req.Id).Update(do.SysStudy{
-			Study:   req.Study,
-			StudyDe: req.StudyDe,
+		_, err = dao.SysUserex.Ctx(ctx).Where(dao.SysUserex.Columns().Id, req.Id).Update(do.SysUserex{
+			UserEx: req.UserEx,
 		})
 		liberr.ErrIsNil(ctx, err, "修改失败")
 	})
@@ -61,8 +58,10 @@ func (s *DemoExmessageImpl) DemoExmassageEdit(ctx context.Context, req *demo.Exm
 }
 func (s *DemoExmessageImpl) DemoExmassageDetele(ctx context.Context, req *demo.ExmessageDeleteReq) (err error) {
 	err = g.Try(ctx, func(ctx context.Context) {
-		_, err = dao.SysStudy.Ctx(ctx).Where(dao.SysStudy.Columns().Id, req.Id).Delete()
-		liberr.ErrIsNil(ctx, err, "删除失败")
+		_, err = dao.SysUserex.Ctx(ctx).Where(dao.SysUserex.Columns().Id, req.Id).Update(do.SysUserex{
+			DeleteIs: 1,
+		})
+		liberr.ErrIsNil(ctx, err, "修改失败")
 	})
 	return
 }

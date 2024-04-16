@@ -16,5 +16,5 @@ type SysUserex struct {
 	UserId   interface{} //
 	UserEx   interface{} // 拓展信息
 	Createat *gtime.Time //
-	Delete   interface{} // 判断是否删除
+	DeleteIs interface{} // 判断是否删除
 }

@@ -33,7 +33,7 @@ export function deleteexmessage(data:object) {
     console.log("函数删除测试：",data);
     return request({
         url: '/api/v1/demo/exmessage/delete',
-        method: 'delete',
+        method: 'put',
         data:data
     })
 }

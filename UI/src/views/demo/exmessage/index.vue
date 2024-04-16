@@ -26,9 +26,9 @@
 			<el-table :data="tableData.data" style="width: 100%">
 				<!-- <el-table-column label="序号" align="center" prop="log_id" /> -->
 				<el-table-column label="用户ID" align="center" prop="user_id" />
-				<el-table-column label="姓名" align="center" prop="user_name" />
-				<el-table-column label="额外信息" align="center" prop="position" />
-				<el-table-column label="创建时间" align="center" prop="bumen" />
+				<el-table-column label="姓名" align="center" prop="user_nickname" />
+				<el-table-column label="额外信息" align="center" prop="user_ex" />
+				<el-table-column label="创建时间" align="center" prop="createat" />
 				<!-- <el-table-column label="入职时间" align="center" prop="creattime" /> -->
 				<!-- <el-table-column label="在职状态" align="center" prop="state" /> -->
 				<!-- <el-table-column label="操作号" align="center" prop="log_id" /> -->
@@ -65,6 +65,7 @@ import Editexmassage from '/@/views/demo/exmessage/component/editDetails.vue';
 interface TableData {
 	userName: string;
 	userId:string;
+	id: number;
 }
 interface TableDataState {
 	ids: number[];
@@ -78,6 +79,7 @@ interface TableDataState {
 			logId:string;
 			pageNum: number;
 			pageSize: number;
+			id: number;
 		};
 	};
 }
@@ -141,6 +143,7 @@ const state = reactive<TableDataState>({
 			userName: '',
 			userId:'',
 			logId:'',
+			id:0,
 			pageNum: 1,
 			pageSize: 10,
 		},
