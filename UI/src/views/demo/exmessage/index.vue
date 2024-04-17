@@ -18,7 +18,7 @@
 							<el-icon>
 								<ele-FolderAdd />
 							</el-icon>
-							新增额外信息
+							新增拓展信息
 						</el-button>
 					</el-form-item>
 				</el-form>

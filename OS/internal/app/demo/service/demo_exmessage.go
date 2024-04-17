@@ -31,7 +31,7 @@ type IDemoExmessage interface {
 func (s *DemoExmessageImpl) DemoExmassageList(ctx context.Context, req *demo.ExmessageReq) (rs gdb.Result, err error) {
 	rs, err = g.DB().GetAll(ctx, `select ex.id,ex.user_id,u.user_nickname, ex.user_ex,ex.createat from sys_userex  ex
 	left join sys_user u on ex.user_id=u.id
-	where u.id=? and  delete_is=0 or delete_is is null
+	where u.id=? and  (delete_is=0 or delete_is is null)
 `, req.UserId)
 	return
 }
