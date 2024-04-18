@@ -6,13 +6,15 @@
 				<el-form-item v-if="formData.id === 0"  label="用户ID" prop="user_id">
 					<el-input v-model="formData.user_id" placeholder="请输入唯一用户ID" />
 				</el-form-item>
-				<el-form-item label="学历记录" prop="study">
-					<el-input v-model="formData.study" placeholder="请输入学历信息" />
+				<el-form-item label="标题" prop="title">
+					<el-input v-model="formData.title" placeholder="请输入标题" />
 				</el-form-item>
-				<el-form-item label="详细内容" prop="study_de">
-					<el-input v-model="formData.study_de" placeholder="请输入学历详细信息" />
+				<el-form-item label="个人目标" prop="neirong">
+					<el-input v-model="formData.neirong" placeholder="请输入个人目标" />
 				</el-form-item>
-	
+				<el-form-item label="完成进度" prop="jindu">
+					<el-input v-model="formData.jindu" placeholder="请输入完成进度" />
+				</el-form-item>
 			</el-form>
 			<template #footer>
 				<span class="dialog-footer">
@@ -28,7 +30,7 @@
 
 <script setup lang="ts">
 import { reactive, toRefs, ref, unref } from 'vue';
-import {addstudy, editstudy } from '/@/api/demo/study';
+import {addperreview, editperreview } from '/@/api/demo/perreview';
 import { ElMessage } from "element-plus";
 
 interface FormState {
@@ -36,6 +38,9 @@ interface FormState {
 	study: string;
 	study_de: string;
 	user_id: string;
+	title: string;
+	neirong: string;
+	jindu: string;
 }
 interface ZhiShiKuState {
 	isShowDialog: boolean;
@@ -53,6 +58,9 @@ const state = reactive<ZhiShiKuState>({
 		study:'',
 		user_id: '',
 		study_de: '',
+		title: '',
+		neirong: '',
+		jindu: '',
 	},
 	// 表单校验
 	rules: {
@@ -71,6 +79,9 @@ const resetForm = () => {
 		study:'',
 		user_id: '',
 		study_de: '',
+		title: '',
+		neirong: '',
+		jindu: '',
 	}
 };
 
@@ -106,7 +117,7 @@ const onSubmit = () => {
 			if (state.formData.id === 0) {
 				// 发送到后台
 				console.log("测试是否调用了添加函数");
-				addstudy(state.formData).then(() => {
+				addperreview(state.formData).then(() => {
 					ElMessage.success('新职务信息添加成功');
 					closeDialog(); // 关闭弹窗
 					emit('dataList');// 给父窗口发送事件
@@ -115,7 +126,7 @@ const onSubmit = () => {
 				})
 			} else {
 				// 发送到后台
-				editstudy(state.formData).then(() => {
+				editperreview(state.formData).then(() => {
 					ElMessage.success('职务信息修改成功');
 					closeDialog(); // 关闭弹窗
 					emit('dataList');// 给父窗口发送事件

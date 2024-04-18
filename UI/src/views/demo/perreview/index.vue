@@ -24,13 +24,13 @@
 				</el-form>
 			</div>
 			<el-table :data="tableData.data" style="width: 100%">
-				<el-table-column label="序号" align="center" prop="id" />
+				<el-table-column label="序号" align="center" prop="log_id" />
 				<el-table-column label="用户ID" align="center" prop="user_id" />
 				<el-table-column label="姓名" align="center" prop="user_nickname" />
-				<el-table-column label="标题" align="center" prop="study_de" />
-				<el-table-column label="个人目标内容" align="center" prop="study" />
-				<el-table-column label="完成进度" align="center" prop="study" />
-				<el-table-column label="记录时间" align="center" prop="createat" />
+				<el-table-column label="标题" align="center" prop="title" />
+				<el-table-column label="个人目标内容" align="center" prop="neirong" />
+				<el-table-column label="完成进度" align="center" prop="jindu" />
+				<el-table-column label="记录时间" align="center" prop="create_at" />
 				<el-table-column label="操作" width="100">
 					<template #default="scope">
 						<el-dropdown>

@@ -29,21 +29,23 @@ type IDemoPerreview interface {
 }
 
 func (s *DemoPerreviewImpl) DemoPerreviewList(ctx context.Context, req *demo.PerreviewReq) (rs gdb.Result, err error) {
-	rs, err = g.DB().GetAll(ctx, `SELECT s.id,s.user_id,u.user_nickname,s.study,s.study_de,s.createat
-	from sys_study s 
-	left join sys_user u on s.user_id=u.id
-	where s.user_id=?
+	rs, err = g.DB().GetAll(ctx, `select 
+	g.log_id,g.user_id,u.user_nickname,g.title,g.neirong,g.jindu,g.create_at  from cc_geren_renwu g
+	left join sys_user u  on g.user_id=u.id
+	where g.user_id=?
 `, req.UserId)
 	return
 }
 func (s *DemoPerreviewImpl) DemoPerreviewAdd(ctx context.Context, req *demo.PerreviewAddReq) (err error) {
 	currentTime := time.Now() // 获取当前时间
 	err = g.Try(ctx, func(ctx context.Context) {
-		_, err = dao.SysStudy.Ctx(ctx).Insert(do.SysStudy{
+		_, err = dao.CcGerenRenwu.Ctx(ctx).Insert(do.CcGerenRenwu{
+			LogId:    req.LogId,
 			UserId:   req.UserId,
-			Study:    req.Study,
-			StudyDe:  req.StudyDe,
-			Createat: gtime.New(currentTime),
+			Title:    req.Title,
+			Neirong:  req.Neirong,
+			Jindu:    req.Jindu,
+			CreateAt: gtime.New(currentTime),
 		})
 		liberr.ErrIsNil(ctx, err, "添加失败")
 	})
@@ -51,9 +53,8 @@ func (s *DemoPerreviewImpl) DemoPerreviewAdd(ctx context.Context, req *demo.Perr
 }
 func (s *DemoPerreviewImpl) DemoPerreviewEdit(ctx context.Context, req *demo.PerreviewEditReq) (err error) {
 	err = g.Try(ctx, func(ctx context.Context) {
-		_, err = dao.SysStudy.Ctx(ctx).Where(dao.SysStudy.Columns().Id, req.Id).Update(do.SysStudy{
-			Study:   req.Study,
-			StudyDe: req.StudyDe,
+		_, err = dao.CcGerenRenwu.Ctx(ctx).Where(dao.CcGerenRenwu.Columns().LogId, req.LogId).Update(do.CcGerenRenwu{
+			Jindu: req.Jindu,
 		})
 		liberr.ErrIsNil(ctx, err, "修改失败")
 	})
@@ -61,7 +62,7 @@ func (s *DemoPerreviewImpl) DemoPerreviewEdit(ctx context.Context, req *demo.Per
 }
 func (s *DemoPerreviewImpl) DemoPerreviewDetele(ctx context.Context, req *demo.PerreviewDeleteReq) (err error) {
 	err = g.Try(ctx, func(ctx context.Context) {
-		_, err = dao.SysStudy.Ctx(ctx).Where(dao.SysStudy.Columns().Id, req.Id).Delete()
+		_, err = dao.CcGerenRenwu.Ctx(ctx).Where(dao.CcGerenRenwu.Columns().LogId, req.LogId).Delete()
 		liberr.ErrIsNil(ctx, err, "删除失败")
 	})
 	return

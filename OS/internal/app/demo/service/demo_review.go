@@ -44,6 +44,7 @@ func (s *DemoReviewImpl) DemoReviewAdd(ctx context.Context, req *demo.ReviewAddR
 			DeptId:   req.DeptId,
 			Title:    req.Title,
 			Neirong:  req.Neirong,
+			Jindu:    req.Jindu,
 			CreateAt: gtime.New(currentTime),
 		})
 		liberr.ErrIsNil(ctx, err, "添加失败")
