@@ -1,18 +1,23 @@
-
 <template>
 	<div class="system-edit-post-container">
 		<el-dialog :title="(formData.id !== 0 ? '修改' : '添加') + '坐席'" v-model="isShowDialog" width="400px">
 			<el-form ref="formRef" :model="formData" :rules="rules" size="default" label-width="90px">
-				<el-form-item v-if="formData.id === 0"  label="用户ID" prop="user_id">
-					<el-input v-model="formData.user_id" placeholder="请输入唯一用户ID" />
+				<el-form-item v-if="formData.id === 0" label="部门ID" prop="deptId">
+					<el-input v-model="formData.deptId" placeholder="请输入部门ID" />
 				</el-form-item>
-				<el-form-item label="学历记录" prop="study">
-					<el-input v-model="formData.study" placeholder="请输入学历信息" />
+				<el-form-item v-if="formData.id === 0" label="标题" prop="title">
+					<el-input v-model="formData.title" placeholder="请输入标题" />
 				</el-form-item>
-				<el-form-item label="详细内容" prop="study_de">
+				<el-form-item v-if="formData.id === 0" label="内容" prop="neirong">
+					<el-input v-model="formData.neirong" placeholder="请输入内容" />
+				</el-form-item>
+				<el-form-item label="进度" prop="jindu">
+					<el-input v-model="formData.jindu" placeholder="请输入当前进度" />
+				</el-form-item>
+				<!-- <el-form-item label="详细内容" prop="study_de">
 					<el-input v-model="formData.study_de" placeholder="请输入学历详细信息" />
-				</el-form-item>
-	
+				</el-form-item> -->
+
 			</el-form>
 			<template #footer>
 				<span class="dialog-footer">
@@ -28,7 +33,7 @@
 
 <script setup lang="ts">
 import { reactive, toRefs, ref, unref } from 'vue';
-import {addstudy, editstudy } from '/@/api/demo/study';
+import { addreview, editreview } from '/@/api/demo/review';
 import { ElMessage } from "element-plus";
 
 interface FormState {
@@ -36,6 +41,10 @@ interface FormState {
 	study: string;
 	study_de: string;
 	user_id: string;
+	deptId: string;
+	title: string;
+	neirong: string;
+	jindu: string;
 }
 interface ZhiShiKuState {
 	isShowDialog: boolean;
@@ -50,9 +59,13 @@ const state = reactive<ZhiShiKuState>({
 	isShowDialog: false,
 	formData: {
 		id: 0,
-		study:'',
+		study: '',
 		user_id: '',
 		study_de: '',
+		deptId: '',
+		title: '',
+		neirong: '',
+		jindu: '',
 	},
 	// 表单校验
 	rules: {
@@ -68,9 +81,13 @@ const state = reactive<ZhiShiKuState>({
 const resetForm = () => {
 	state.formData = {
 		id: 0,
-		study:'',
+		study: '',
 		user_id: '',
 		study_de: '',
+		deptId: '',
+		title: '',
+		neirong: '',
+		jindu: '',
 	}
 };
 
@@ -106,8 +123,8 @@ const onSubmit = () => {
 			if (state.formData.id === 0) {
 				// 发送到后台
 				console.log("测试是否调用了添加函数");
-				addstudy(state.formData).then(() => {
-					ElMessage.success('新职务信息添加成功');
+				addreview(state.formData).then(() => {
+					ElMessage.success('信息添加成功');
 					closeDialog(); // 关闭弹窗
 					emit('dataList');// 给父窗口发送事件
 				}).finally(() => {
@@ -115,8 +132,8 @@ const onSubmit = () => {
 				})
 			} else {
 				// 发送到后台
-				editstudy(state.formData).then(() => {
-					ElMessage.success('职务信息修改成功');
+				editreview(state.formData).then(() => {
+					ElMessage.success('信息修改成功');
 					closeDialog(); // 关闭弹窗
 					emit('dataList');// 给父窗口发送事件
 				}).finally(() => {

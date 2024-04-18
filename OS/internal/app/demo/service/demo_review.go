@@ -29,21 +29,22 @@ type IDemoReview interface {
 }
 
 func (s *DemoReviewImpl) DemoReviewList(ctx context.Context, req *demo.ReviewReq) (rs gdb.Result, err error) {
-	rs, err = g.DB().GetAll(ctx, `SELECT s.id,s.user_id,u.user_nickname,s.study,s.study_de,s.createat
-	from sys_study s 
-	left join sys_user u on s.user_id=u.id
-	where s.user_id=?
-`, req.UserId)
+	rs, err = g.DB().GetAll(ctx, `SELECT b.log_id,
+	d.dept_name,b.title,b.neirong,b.jindu,b.create_at
+	 FROM cc_bumen_renwu b
+	left join sys_dept  d on b.dept_id=d.dept_id
+	where d.dept_id=?
+`, req.DeptId)
 	return
 }
 func (s *DemoReviewImpl) DemoReviewAdd(ctx context.Context, req *demo.ReviewAddReq) (err error) {
 	currentTime := time.Now() // 获取当前时间
 	err = g.Try(ctx, func(ctx context.Context) {
-		_, err = dao.SysStudy.Ctx(ctx).Insert(do.SysStudy{
-			UserId:   req.UserId,
-			Study:    req.Study,
-			StudyDe:  req.StudyDe,
-			Createat: gtime.New(currentTime),
+		_, err = dao.CcBumenRenwu.Ctx(ctx).Insert(do.CcBumenRenwu{
+			DeptId:   req.DeptId,
+			Title:    req.Title,
+			Neirong:  req.Neirong,
+			CreateAt: gtime.New(currentTime),
 		})
 		liberr.ErrIsNil(ctx, err, "添加失败")
 	})
@@ -51,9 +52,8 @@ func (s *DemoReviewImpl) DemoReviewAdd(ctx context.Context, req *demo.ReviewAddR
 }
 func (s *DemoReviewImpl) DemoReviewEdit(ctx context.Context, req *demo.ReviewEditReq) (err error) {
 	err = g.Try(ctx, func(ctx context.Context) {
-		_, err = dao.SysStudy.Ctx(ctx).Where(dao.SysStudy.Columns().Id, req.Id).Update(do.SysStudy{
-			Study:   req.Study,
-			StudyDe: req.StudyDe,
+		_, err = dao.CcBumenRenwu.Ctx(ctx).Where(dao.CcBumenRenwu.Columns().LogId, req.LogId).Update(do.CcBumenRenwu{
+			Jindu: req.Jindu,
 		})
 		liberr.ErrIsNil(ctx, err, "修改失败")
 	})

@@ -27,8 +27,9 @@
 				<el-table-column label="序号" align="center" prop="id" />
 				<el-table-column label="用户ID" align="center" prop="user_id" />
 				<el-table-column label="姓名" align="center" prop="user_nickname" />
-				<el-table-column label="学历记录" align="center" prop="study" />
-				<el-table-column label="详细内容" align="center" prop="study_de" />
+				<el-table-column label="标题" align="center" prop="study_de" />
+				<el-table-column label="个人目标内容" align="center" prop="study" />
+				<el-table-column label="完成进度" align="center" prop="study" />
 				<el-table-column label="记录时间" align="center" prop="createat" />
 				<el-table-column label="操作" width="100">
 					<template #default="scope">

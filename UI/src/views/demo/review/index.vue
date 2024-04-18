@@ -3,8 +3,8 @@
 		<el-card shadow="hover">
 			<div class="system-user-search mb15">
 				<el-form :model="tableData.param" ref="queryRef" :inline="true" label-width="68px">
-					<el-form-item label="个人ID" prop="userId" style="width: 200px;">
-						<el-input v-model="tableData.param.userId" placeholder="请输入ID号" clearable size="default"
+					<el-form-item label="部门ID号" prop="deptId" style="width: 200px;">
+						<el-input v-model="tableData.param.deptId" placeholder="请输入ID号" clearable size="default"
 							@keyup.enter.native="getList" />
 					</el-form-item>
 					<el-form-item>
@@ -18,18 +18,18 @@
 							<el-icon>
 								<ele-FolderAdd />
 							</el-icon>
-							新增学习记录
+							发布部门目标
 						</el-button>
 					</el-form-item>
 				</el-form>
 			</div>
 			<el-table :data="tableData.data" style="width: 100%">
-				<el-table-column label="序号" align="center" prop="id" />
-				<el-table-column label="用户ID" align="center" prop="user_id" />
-				<el-table-column label="姓名" align="center" prop="user_nickname" />
-				<el-table-column label="学历记录" align="center" prop="study" />
-				<el-table-column label="详细内容" align="center" prop="study_de" />
-				<el-table-column label="记录时间" align="center" prop="createat" />
+				<el-table-column label="序号" align="center" prop="log_id" />
+				<el-table-column label="部门名" align="center" prop="dept_name" />
+				<el-table-column label="标题" align="center" prop="title" />
+				<el-table-column label="目标内容" align="center" prop="neirong" />
+				<el-table-column label="完成进度" align="center" prop="jindu" />
+				<el-table-column label="记录时间" align="center" prop="create_at" />
 				<el-table-column label="操作" width="100">
 					<template #default="scope">
 						<el-dropdown>
@@ -38,8 +38,8 @@
 							</span>
 							<template #dropdown>
 								<el-dropdown-menu>
-									<el-dropdown-item @click="onEdit(scope.row)">修改</el-dropdown-item>
-									<el-dropdown-item @click="onDel(scope.row)">删除</el-dropdown-item>
+									<el-dropdown-item @click="onEdit(scope.row)">进度调整</el-dropdown-item>
+									<!-- <el-dropdown-item @click="onDel(scope.row)">删除</el-dropdown-item> -->
 								</el-dropdown-menu>
 							</template>
 						</el-dropdown>
@@ -62,7 +62,7 @@ import Editreview from '/@/views/demo/review/component/editDetails.vue';
 // 定义接口来定义对象的类型
 interface TableData {
 	userName: string;
-	userId:string;
+	deptId:string;
 	id: number;
 }
 interface TableDataState {
@@ -72,7 +72,7 @@ interface TableDataState {
 		total: number;
 		loading: boolean;
 		param: {
-			userId:string;
+			deptId:string;
 			id: number;
 			pageNum: number;
 			pageSize: number;
@@ -124,7 +124,7 @@ const state = reactive<TableDataState>({
 		total: 0,
 		loading: false,
 		param: {
-			userId:'',
+			deptId:'',
 			id: 0,
 			pageNum: 1,
 			pageSize: 10,
