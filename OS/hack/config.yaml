@@ -3,7 +3,7 @@ gfcli:
   gen:
     dao:
       - link:            "mysql:root:1234qwer@tcp(127.0.0.1:3306)/fastcc"
-        tables:          "cc_geren_renwu,cc_bumen_renwu"
+        tables:          "cc_zongjie"
         removePrefix:    "gf_"
         descriptionTag:  true
         noModelComment:  true

@@ -23,6 +23,8 @@ type DemoDetailsImpl struct {
 }
 type IDemoDetails interface {
 	DemoDetails01(ctx context.Context, UserId int64) (rs gdb.Result, err error)
+	DemoJiben(ctx context.Context, UserId int64) (rs gdb.Result, err error)
+	DemoGanbu(ctx context.Context, req *demo.GanbuReq) (rs gdb.Result, err error)
 	DemoDetailsAdd(ctx context.Context, req *demo.DetailsAddReq) (err error)
 	DemoDetailsEdit(ctx context.Context, req *demo.DetailsEditReq) (err error)
 	DemoDetailsDetele(ctx context.Context, req *demo.DetailsDeleteReq) (err error)
@@ -33,6 +35,19 @@ func (s *DemoDetailsImpl) DemoDetails01(ctx context.Context, UserId int64) (rs g
 	select 
 *
 	 from  sys_details where user_id=?`, UserId)
+	return
+}
+func (s *DemoDetailsImpl) DemoJiben(ctx context.Context, UserId int64) (rs gdb.Result, err error) {
+	rs, err = g.DB().GetAll(ctx, `
+	select 
+*
+	 from  sys_user where id=?`, UserId)
+	return
+}
+func (s *DemoDetailsImpl) DemoGanbu(ctx context.Context, req *demo.GanbuReq) (rs gdb.Result, err error) {
+	rs, err = g.DB().GetAll(ctx, `select s.id,s.user_nickname,d.dept_name,s.created_at  from  sys_user s
+	left join sys_dept d 
+	on s.dept_id=d.dept_id`)
 	return
 }
 func (s *DemoDetailsImpl) DemoDetailsAdd(ctx context.Context, req *demo.DetailsAddReq) (err error) {

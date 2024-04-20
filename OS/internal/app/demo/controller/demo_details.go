@@ -29,3 +29,13 @@ func (c *demoDetailsController) DemoDetailsDetele(ctx context.Context, req *demo
 	err = service.DemoDetails().DemoDetailsDetele(ctx, req)
 	return
 }
+func (c *demoDetailsController) DemoJiben(ctx context.Context, req *demo.JibenReq) (res *demo.JibenRes, err error) {
+	res = new(demo.JibenRes)
+	res.List, err = service.DemoDetails().DemoJiben(ctx, req.UserId)
+	return
+}
+func (c *demoDetailsController) DemoGanbu(ctx context.Context, req *demo.GanbuReq) (res *demo.GanbuRes, err error) {
+	res = new(demo.GanbuRes)
+	res.List, err = service.DemoDetails().DemoGanbu(ctx, req)
+	return
+}
