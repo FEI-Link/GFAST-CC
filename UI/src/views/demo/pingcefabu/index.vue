@@ -12,41 +12,31 @@
 							<el-icon>
 								<ele-Search />
 							</el-icon>
-							查看年终总结
+							查找
 						</el-button>
 						<el-button size="default" type="success" class="ml10" @click="onZuoXiAdd">
 							<el-icon>
 								<ele-FolderAdd />
 							</el-icon>
-							发布年终总结
+							发布评测
 						</el-button>
 					</el-form-item>
 				</el-form>
 			</div>
 			<el-table :data="tableData.data" style="width: 100%">
-				<el-table-column type="index" label="序号" width="60" />
-				<!-- <el-table-column label="用户ID" align="center" prop="id" /> -->
-				<el-table-column label="总结关联人" align="center" prop="user_nickname" />
-				<el-table-column label="总结关联部门" align="center" prop="dept_name" />
-				<el-table-column label="年度总结标题" align="center" prop="title" />
-				<el-table-column label="年度总结内容" align="center" prop="neirong" />
-				<el-table-column label="总结年度" align="center" prop="niandu" />
-				<el-table-column label="发布时间" align="center" prop="creatat" />
-				<el-table-column label="操作" width="100">
+				<!-- <el-table-column type="index" label="序号" width="60" /> -->
+				<el-table-column label="评测相关人员" align="center" prop="pingce" />
+				<el-table-column label="所属部门" align="center" prop="dept_name" />
+				<el-table-column label="评测标题" align="center" prop="title" />
+				<el-table-column label="评测内容" align="center" prop="neirong" />
+				<el-table-column label="评测发布人" align="center" prop="fabu" />
+				<!-- <el-table-column label="评测发布时间" align="center" prop="create_at" /> -->
+				<el-table-column label="测评回收" width="100">
 					<template #default="scope">
-						<el-dropdown>
-							<span class="el-dropdown-link">
-								...<el-icon class="el-icon--right"><arrow-down /></el-icon>
-							</span>
-							<template #dropdown>
-								<el-dropdown-menu>
-									<el-dropdown-item @click="onEdit(scope.row)">修改</el-dropdown-item>
-								
-								</el-dropdown-menu>
-							</template>
-						</el-dropdown>
+						<el-button type="text" @click="onEdit(scope.row)">归档</el-button>
 					</template>
 				</el-table-column>
+
 			</el-table>
 			<pagination v-show="tableData.total > tableData.param.pageSize" :total="tableData.total"
 				v-model:page="tableData.param.pageNum" v-model:limit="tableData.param.pageSize" @pagination="getList" />
@@ -58,8 +48,8 @@
 <script setup lang="ts">
 import { ElMessage, ElMessageBox } from 'element-plus';
 import { toRefs, reactive, onMounted, ref, toRaw } from 'vue';
-import { getzongjie, deletezongjie } from '/@/api/demo/zongjie';
-import Editzongjie from '/@/views/demo/zongjie/component/editDetails.vue';
+import { getpingce1, addpingce, deletepingce } from '/@/api/demo/pingce';
+import Editzongjie from '/@/views/demo/pingcefabu/component/editDetails.vue';
 
 // 定义接口来定义对象的类型
 interface TableData {
@@ -86,13 +76,13 @@ interface TableDataState {
 			id: number;
 			pageNum: number;
 			pageSize: number;
-			log_id:number;
+			log_id: number;
 		};
 	};
 }
 
 const getList = () => {
-	getzongjie(state.tableData.param).then((res: any) => {
+	getpingce1(state.tableData.param).then((res: any) => {
 		state.tableData.data = res.data.list;
 		state.tableData.total = res.data.total;
 	});
@@ -120,7 +110,7 @@ const onDel = (row: TableData) => {
 		type: 'warning',
 	})
 		.then(() => {
-			deletezongjie(state.tableData.param).then(() => {
+			deletepingce(state.tableData.param).then(() => {
 				ElMessage.success('删除成功');
 				getList();
 			})
@@ -136,7 +126,7 @@ const state = reactive<TableDataState>({
 		loading: false,
 		param: {
 			userId: '',
-			log_id:0,
+			log_id: 0,
 			id: 0,
 			pageNum: 1,
 			pageSize: 10,

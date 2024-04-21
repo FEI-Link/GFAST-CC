@@ -32,19 +32,9 @@
 				<el-table-column label="评测发布人" align="center" prop="fabu" />
 				<el-table-column label="评测发布时间" align="center" prop="create_at" />
 
-				<el-table-column label="操作" width="100">
+				<el-table-column label="评测修改" width="100">
 					<template #default="scope">
-						<el-dropdown>
-							<span class="el-dropdown-link">
-								...<el-icon class="el-icon--right"><arrow-down /></el-icon>
-							</span>
-							<template #dropdown>
-								<el-dropdown-menu>
-									<el-dropdown-item @click="onEdit(scope.row)">修改</el-dropdown-item>
-
-								</el-dropdown-menu>
-							</template>
-						</el-dropdown>
+						<el-button type="text" @click="onEdit(scope.row)">修改</el-button>
 					</template>
 				</el-table-column>
 			</el-table>

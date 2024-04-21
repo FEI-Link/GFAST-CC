@@ -48,6 +48,14 @@ type PinceRes struct {
 	g.Meta `mime:"application/json"`
 	List   gdb.Result `json:"list"`
 }
+type Pingce1Req struct {
+	g.Meta `path:"/pingce1/list" tags:"详情查询" method:"get" summary:"详情查询"`
+	UserId int `json:"userId"   description:"这个ID和个人相关联"`
+}
+type Pince1Res struct {
+	g.Meta `mime:"application/json"`
+	List   gdb.Result `json:"list"`
+}
 type PingceEditReq struct {
 	g.Meta   `path:"/pingce/edit" tags:"详情查询" method:"put" summary:"详情查询"`
 	LogId    int    `json:"logId"    description:""`
@@ -59,4 +67,22 @@ type PingceEditReq struct {
 	DeleteIs int    `json:"deleteIs" description:"1为删除，不对其他情况做区分"`
 }
 type PingceEditRes struct {
+}
+type PingceAddReq struct {
+	g.Meta   `path:"/pingce/add" tags:"详情查询" method:"post" summary:"详情查询"`
+	LogId    int    `json:"logId"    description:""`
+	UserId   int    `json:"userId"   description:""`
+	Title    string `json:"title"    description:""`
+	Neirong  string `json:"neirong"  description:""`
+	CreateAt string `json:"createAt" description:""`
+	CreateBy string `json:"createBy" description:""`
+	DeleteIs int    `json:"deleteIs" description:"1为删除，不对其他情况做区分"`
+}
+type PingceAddRes struct {
+}
+type PingceDeleteReq struct {
+	g.Meta `path:"/pingce/delete" tags:"详情查询" method:"delete" summary:"详情查询"`
+	LogId  int `json:"logId"    description:""`
+}
+type PingceDeleteRes struct {
 }

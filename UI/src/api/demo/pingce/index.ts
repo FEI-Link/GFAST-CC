@@ -8,15 +8,23 @@ export function getpingce(query?:Object) {
         params:query
     })
 }
-
-// export function addzongjie(data:object) {
-//     console.log("函数增加测试接口",data);
-//     return request({
-//         url: '/api/v1/demo/zongjie/add',
-//         method: 'post',
-//         data:data
-//     })
-// }
+//精确查找
+export function getpingce1(query?:Object) {
+    console.log("函数查询测试：",query);
+    return request({
+        url: '/api/v1/demo/pingce1/list',
+        method: 'get',
+        params:query
+    })
+}
+export function addpingce(data:object) {
+    console.log("函数增加测试接口",data);
+    return request({
+        url: '/api/v1/demo/pingce/add',
+        method: 'post',
+        data:data
+    })
+}
 
 
 export function editpingce(data:object) {
@@ -29,11 +37,11 @@ export function editpingce(data:object) {
 }
 
 
-// export function deletezongjie(data:object) {
-//     console.log("函数删除测试：",data);
-//     return request({
-//         url: '/api/v1/demo/zongjie/delete',
-//         method: 'delete',
-//         data:data
-//     })
-// }
+export function deletepingce(data:object) {
+    console.log("函数删除测试：",data);
+    return request({
+        url: '/api/v1/demo/pingce/delete',
+        method: 'delete',
+        data:data
+    })
+}
