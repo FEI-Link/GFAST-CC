@@ -18,7 +18,7 @@
 							<el-icon>
 								<ele-FolderAdd />
 							</el-icon>
-							新增学习记录
+							发布个人工作目标
 						</el-button>
 					</el-form-item>
 				</el-form>

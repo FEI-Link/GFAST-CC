@@ -23,8 +23,10 @@ type DemoRemanImpl struct {
 }
 type IDemoReman interface {
 	DemoRemanList(ctx context.Context, req *demo.RemanReq) (rs gdb.Result, err error)
+	DemoPingceList(ctx context.Context) (rs gdb.Result, err error)
 	DemoRemanAdd(ctx context.Context, req *demo.RemanAddReq) (err error)
 	DemoRemanEdit(ctx context.Context, req *demo.RemanEditReq) (err error)
+	DemoPingceEdit(ctx context.Context, req *demo.PingceEditReq) (err error)
 	DemoRemanDetele(ctx context.Context, req *demo.RemanDeleteReq) (err error)
 }
 
@@ -34,6 +36,24 @@ func (s *DemoRemanImpl) DemoRemanList(ctx context.Context, req *demo.RemanReq) (
 	left join sys_user u on s.user_id=u.id
 	where s.user_id=?
 `, req.UserId)
+	return
+}
+func (s *DemoRemanImpl) DemoPingceList(ctx context.Context) (rs gdb.Result, err error) {
+	rs, err = g.DB().GetAll(ctx, `select p.log_id, s.user_nickname as pingce,d.dept_name,p.title, p.neirong,s1.user_nickname as fabu,p.create_at
+	from  cc_pingce p
+	left join sys_user s on p.user_id=s.id
+	left join sys_dept d on s.dept_id=d.dept_id
+	left join sys_user s1 on p.create_by=s1.id
+`)
+	return
+}
+func (s *DemoRemanImpl) DemoPingceEdit(ctx context.Context, req *demo.PingceEditReq) (err error) {
+	err = g.Try(ctx, func(ctx context.Context) {
+		_, err = dao.CcPingce.Ctx(ctx).Where(dao.CcPingce.Columns().LogId, req.LogId).Update(do.CcPingce{
+			Neirong: req.Neirong,
+		})
+		liberr.ErrIsNil(ctx, err, "修改失败")
+	})
 	return
 }
 func (s *DemoRemanImpl) DemoRemanAdd(ctx context.Context, req *demo.RemanAddReq) (err error) {

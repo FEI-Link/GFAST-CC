@@ -33,7 +33,7 @@
                     @keyup.enter.native="userList"
                 />
               </el-form-item>
-              <el-form-item label="手机号码" prop="mobile">
+              <!-- <el-form-item label="手机号码" prop="mobile">
                 <el-input
                     v-model="tableData.param.mobile"
                     placeholder="请输入手机号码"
@@ -42,7 +42,7 @@
                     style="width: 240px"
                     @keyup.enter.native="userList"
                 />
-              </el-form-item>
+              </el-form-item> -->
               <el-form-item label="状态" prop="status" style="width: 200px;">
                 <el-select
                     v-model="tableData.param.status"

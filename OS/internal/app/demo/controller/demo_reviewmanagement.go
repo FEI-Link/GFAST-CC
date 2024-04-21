@@ -29,3 +29,12 @@ func (c *demoRemanController) DemoRemanDetele(ctx context.Context, req *demo.Rem
 	err = service.DemoReman().DemoRemanDetele(ctx, req)
 	return
 }
+func (c *demoRemanController) DemoPingceList(ctx context.Context, req *demo.PingceReq) (res *demo.PinceRes, err error) {
+	res = new(demo.PinceRes)
+	res.List, err = service.DemoReman().DemoPingceList(ctx)
+	return
+}
+func (c *demoRemanController) DemoPingceEdit(ctx context.Context, req *demo.PingceEditReq) (res *demo.PingceEditRes, err error) {
+	err = service.DemoReman().DemoPingceEdit(ctx, req)
+	return
+}

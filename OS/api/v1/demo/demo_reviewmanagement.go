@@ -40,3 +40,23 @@ type RemanDeleteReq struct {
 }
 type RemanDeleteRes struct {
 }
+type PingceReq struct {
+	g.Meta `path:"/pingce/list" tags:"详情查询" method:"get" summary:"详情查询"`
+	UserId int `json:"userId"   description:"这个ID和个人相关联"`
+}
+type PinceRes struct {
+	g.Meta `mime:"application/json"`
+	List   gdb.Result `json:"list"`
+}
+type PingceEditReq struct {
+	g.Meta   `path:"/pingce/edit" tags:"详情查询" method:"put" summary:"详情查询"`
+	LogId    int    `json:"logId"    description:""`
+	UserId   int    `json:"userId"   description:""`
+	Title    string `json:"title"    description:""`
+	Neirong  string `json:"neirong"  description:""`
+	CreateAt string `json:"createAt" description:""`
+	CreateBy string `json:"createBy" description:""`
+	DeleteIs int    `json:"deleteIs" description:"1为删除，不对其他情况做区分"`
+}
+type PingceEditRes struct {
+}
